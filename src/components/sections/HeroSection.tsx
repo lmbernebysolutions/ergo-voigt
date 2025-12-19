@@ -84,8 +84,8 @@ export function HeroSection() {
           
           {/* LEFT: TEXT CONTENT */}
           <div className="relative z-10 lg:w-[48%] flex flex-col justify-center text-center lg:text-left">
-            {/* Logo Background Arc - rechts oben hinter dem Text (nur Desktop) */}
-            <div className="pointer-events-none absolute inset-0 logo-background-arc hidden lg:block" />
+            {/* Logo Background Arc - rechts oben hinter dem Text */}
+            <div className="pointer-events-none absolute inset-0 logo-background-arc" />
              {/* ... Header and P ... */}
              <h1 className="mb-6 font-bold leading-[1.1] text-slate-950" style={{ fontSize: 'clamp(1.75rem, 6vw, 3rem)' }}>
               Der Mensch steht{" "}
@@ -105,14 +105,14 @@ export function HeroSection() {
             <div className="flex flex-wrap gap-3 md:gap-4 justify-center lg:justify-start">
               <Link href="/praxis">
                 <PrimaryButton className="h-12 min-h-[48px] px-6 md:px-8 text-base shadow-sky-200">
-                  Termin vereinbaren
+                  Praxen entdecken
                 </PrimaryButton>
               </Link>
               <Link
                 href="/leistungen"
                 className="inline-flex h-12 min-h-[48px] items-center justify-center rounded-full border border-slate-200 bg-white px-6 md:px-8 text-base font-semibold text-slate-800 transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/50"
               >
-                Unsere Leistungen
+                Unsere Fachbereiche
               </Link>
             </div>
           </div>

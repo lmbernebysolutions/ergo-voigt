@@ -258,7 +258,7 @@
     }
   }
 
-  /* Logo Background Arc - rechts oben hinter dem Text im Hero (nur Desktop) */
+  /* Logo Background Arc - rechts oben hinter dem Text im Hero */
   .logo-background-arc {
     background-image: url("/logo.png");
     background-repeat: no-repeat;
@@ -269,5 +269,15 @@
     filter: drop-shadow(0 8px 26px oklch(0.55 0.15 260 / 0.08));
     top: -20px;
     right: -40px;
+  }
+
+  /* Mobile: Logo kleiner und besser sichtbar */
+  @media (max-width: 1023px) {
+    .logo-background-arc {
+      background-size: 180px;
+      opacity: 0.08;
+      top: -10px;
+      right: -20px;
+    }
   }
 }
