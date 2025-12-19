@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
+import { SafeImage } from "./SafeImage"
 
 interface ImageGalleryProps {
   images: string[]
@@ -106,7 +106,7 @@ export function ImageGallery({ images, initialIndex = 0, title, onClose }: Image
             }`}
             onClick={handleImageClick}
           >
-            <Image
+            <SafeImage
               src={currentImage}
               alt={title ? `${title} - Bild ${currentIndex + 1}` : `Bild ${currentIndex + 1}`}
               fill
@@ -163,7 +163,7 @@ export function ImageGallery({ images, initialIndex = 0, title, onClose }: Image
                 }`}
                 aria-label={`Bild ${idx + 1} anzeigen`}
               >
-                <Image
+                <SafeImage
                   src={img}
                   alt={`Thumbnail ${idx + 1}`}
                   fill

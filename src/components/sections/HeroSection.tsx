@@ -77,8 +77,9 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative w-full overflow-hidden bg-slate-50 py-6 md:py-8 lg:py-12" style={{ minHeight: 'calc(100vh - 5rem)' }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-secondary/80 via-white to-background py-6 md:py-8 lg:py-12" style={{ minHeight: 'calc(100vh - 5rem)' }}>
+      <div className="pointer-events-none absolute inset-0 orb-sheen" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center gap-4 md:gap-6 lg:flex-row lg:gap-16 xl:gap-24">
           
           {/* LEFT: TEXT CONTENT */}
