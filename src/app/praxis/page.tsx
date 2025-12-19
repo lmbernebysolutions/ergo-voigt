@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -20,7 +20,8 @@ const googleBusinessProfiles: Record<string, string> = {
   loessnitz: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.1234567890!2d12.1234567!3d50.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDA3JzI0LjQiTiAxMsKwMDcnMjQuNCJF!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde",
 }
 
-export default function PraxisPage() {
+// Separate component for useSearchParams to wrap in Suspense
+function PraxisContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [galleryLocationId, setGalleryLocationId] = useState<string | null>(null)
@@ -459,5 +460,20 @@ export default function PraxisPage() {
         )
       })()}
     </main>
+  )
+}
+
+export default function PraxisPage() {
+  return (
+    <Suspense fallback={
+      <main className="bg-slate-50 text-foreground min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-slate-600">Lade...</p>
+        </div>
+      </main>
+    }>
+      <PraxisContent />
+    </Suspense>
   )
 }
