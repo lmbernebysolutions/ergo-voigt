@@ -141,7 +141,7 @@ export default function Home() {
       {/* Location Cards */}
       <LocationCards />
       
-      <section className="relative overflow-hidden py-32 lg:py-40">
+      <section className="relative overflow-hidden py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,oklch(0.92_0.05_260/_0.26),transparent_35%),radial-gradient(circle_at_90%_10%,oklch(0.82_0.12_260/_0.22),transparent_28%)]" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-20 text-center">
@@ -353,7 +353,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden py-32 lg:py-40 bg-slate-50">
+      <section className="relative overflow-hidden py-16 lg:py-20 bg-slate-50">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,oklch(0.92_0.05_260/_0.35),transparent_30%),radial-gradient(circle_at_85%_15%,oklch(0.82_0.12_260/_0.25),transparent_28%)]" />
         <div className="relative mx-auto max-w-5xl rounded-[40px] bg-white p-12 shadow-2xl shadow-slate-200/50 ring-1 ring-slate-100 lg:p-20">
           <div className="text-center">
@@ -369,12 +369,9 @@ export default function Home() {
               Verordnung.
             </p>
             
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex justify-center">
               <Link href="/praxis">
                 <Button size="lg" className="h-14 rounded-full px-10 text-lg shadow-xl shadow-sky-100 font-bold">Kontakt</Button>
-              </Link>
-              <Link href="/praxis">
-                <Button size="lg" variant="outline" className="h-14 rounded-full border-slate-200 px-10 text-lg text-slate-700 hover:bg-slate-50">Praxis ansehen</Button>
               </Link>
             </div>
           </div>
