@@ -13,7 +13,7 @@ interface TeamGridProps {
 
 export function TeamGrid({ members }: TeamGridProps) {
   return (
-    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
       {members.map((member) => (
         <TeamCard key={member.id} member={member} />
       ))}
@@ -25,17 +25,17 @@ function TeamCard({ member }: { member: TeamMember }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="group relative flex flex-col items-center rounded-[32px] bg-white p-6 text-center shadow-lg shadow-slate-200/50 transition-all hover:-translate-y-1 hover:shadow-xl">
-      <div className="relative mb-6 h-32 w-32 overflow-hidden rounded-full border-4 border-slate-50 shadow-inner">
+    <div className="group relative flex flex-col items-center rounded-[48px] bg-white p-8 text-center shadow-lg shadow-slate-200/50 transition-all hover:-translate-y-1 hover:shadow-xl">
+      <div className="relative mb-8 aspect-square w-full max-w-[280px] overflow-hidden rounded-[40px] border-8 border-slate-50 shadow-inner">
         <Image
           src={member.image}
           alt={member.name}
           fill
-          className="object-cover"
-          sizes="(max-width: 640px) 128px, (max-width: 1024px) 128px, 128px"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 640px) 280px, 280px"
           loading="lazy"
         />
-        </div>
+      </div>
 
       <h3 className="font-bold text-slate-950" style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.5rem)' }}>{member.name}</h3>
       <p className="font-medium text-sky-600" style={{ fontSize: 'clamp(0.875rem, 2vw, 0.875rem)' }}>{member.role}</p>
@@ -67,12 +67,12 @@ function TeamCard({ member }: { member: TeamMember }) {
                   <li key={idx} className="text-sm text-slate-800 leading-relaxed">
                     • {qual}
                   </li>
-          ))}
+                ))}
               </ul>
-        </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-      </div>
+    </div>
   )
 }

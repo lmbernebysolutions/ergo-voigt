@@ -35,7 +35,7 @@ export const locations: Location[] = [
       city: "Aue-Bad Schlema",
     },
     phone: "03771 3406810",
-    email: "aue@ergotherapie-voigt.de",
+    email: "thera@ergo-voigt.de",
     features: {
       accessibility: [
         "Barrierefrei zugänglich",
@@ -59,7 +59,7 @@ export const locations: Location[] = [
       city: "Schwarzenberg/Erzgebirge",
     },
     phone: "03774 178954",
-    email: "schwarzenberg@ergotherapie-voigt.de",
+    email: "thera@ergo-voigt.de",
   },
   {
     id: "loessnitz",
@@ -70,6 +70,6 @@ export const locations: Location[] = [
       city: "Lößnitz",
     },
     phone: "03771 440452",
-    email: "loessnitz@ergotherapie-voigt.de",
+    email: "thera@ergo-voigt.de",
   },
 ];

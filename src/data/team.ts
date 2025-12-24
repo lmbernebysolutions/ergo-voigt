@@ -16,6 +16,7 @@ export const teamMembers: TeamMember[] = [
       "Staatlich anerkannte Ergotherapeutin seit 2000",
       "Handtherapeutin",
       "Neurofeedback-Therapeutin",
+      "Therapeutisches Reiten",
       "Bobath-Therapeutin",
       "Fachtherapeutin für Pädiatrie",
       "Marburger Konzentrationstraining",

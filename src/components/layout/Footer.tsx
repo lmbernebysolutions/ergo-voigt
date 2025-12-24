@@ -3,8 +3,8 @@ import Link from "next/link"
 const praxisLinks = [
   { label: "Praxis", href: "/praxis" },
   { label: "Leistungen", href: "/leistungen" },
+  { label: "Therapieangebote", href: "/therapieangebote" },
   { label: "Team", href: "/team" },
-  { label: "Karriere", href: "/karriere" },
   { label: "Kontakt", href: "/praxis" },
 ]
 
@@ -58,7 +58,7 @@ export function Footer() {
               <p className="text-xs mt-1">Tel: 03771 440452</p>
             </div>
             <div className="pt-2">
-            <p>E-Mail: kontakt@ergotherapie-voigt.de</p>
+              <p>E-Mail: thera@ergo-voigt.de</p>
             </div>
           </div>
         </div>

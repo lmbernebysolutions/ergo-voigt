@@ -15,11 +15,11 @@ export const faqCategories: FAQCategory[] = [
     id: "allgemein",
     label: "Allgemein",
     items: [
-      {
+  {
         question: "Brauche ich eine Überweisung vom Arzt?",
         answer: "Ja, für die Ergotherapie benötigen Sie eine Heilmittelverordnung (Rezept) von Ihrem Hausarzt oder Facharzt. Diese darf bei Behandlungsbeginn in der Regel nicht älter als 28 Tage sein.",
-      },
-      {
+  },
+  {
         question: "Wie bekomme ich einen Termin?",
         answer: "Rufen Sie uns an oder nutzen Sie unser Kontaktformular. Da wir während der Therapien nicht ans Telefon gehen können, sprechen Sie bitte auf den Anrufbeantworter. Wir rufen zeitnah zurück.",
       },
@@ -33,15 +33,15 @@ export const faqCategories: FAQCategory[] = [
     id: "behandlung",
     label: "Behandlung",
     items: [
-      {
+  {
         question: "Wie lange dauert eine Therapieeinheit?",
         answer: "Die Dauer richtet sich nach der ärztlichen Verordnung. Meistens dauert eine Einheit zwischen 30 und 60 Minuten, je nach Maßnahmenart (z.B. motorisch-funktionell oder psychisch-funktionell).",
       },
       {
         question: "Machen Sie auch Hausbesuche?",
         answer: "Ja, wenn der Arzt einen Hausbesuch verordnet hat, kommen wir gerne zu Ihnen nach Hause oder in die Pflegeeinrichtung.",
-      },
-      {
+  },
+  {
         question: "Wie viele Therapieeinheiten sind üblich?",
         answer: "Die Anzahl der Therapieeinheiten richtet sich nach der ärztlichen Verordnung und dem individuellen Behandlungsbedarf. In der Regel werden 6-12 Einheiten verordnet, bei Bedarf kann die Verordnung verlängert werden.",
       },

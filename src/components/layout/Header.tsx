@@ -12,8 +12,8 @@ const navItems = [
   { label: "Start", href: "/" },
   { label: "Praxis", href: "/praxis" },
   { label: "Leistungen", href: "/leistungen" },
+  { label: "Therapieangebote", href: "/therapieangebote" },
   { label: "Team", href: "/team" },
-  { label: "Karriere", href: "/karriere" },
 ]
 
 export function Header() {
@@ -57,7 +57,7 @@ export function Header() {
                     <span className="pointer-events-none absolute inset-0 rounded-full bg-primary/10" />
                   ) : null}
                   <span className="relative z-10">
-                  {item.label}
+                    {item.label}
                   </span>
                 </Link>
               </li>
@@ -82,8 +82,8 @@ export function Header() {
               <Menu className="h-6 w-6" />
             </button>
           </SheetTrigger>
-          <SheetContent 
-            side="right" 
+          <SheetContent
+            side="right"
             className="p-0"
             aria-labelledby="mobile-menu-title"
           >
@@ -112,11 +112,10 @@ export function Header() {
                     <SheetClose asChild key={item.label}>
                       <Link
                         href={item.href}
-                        className={`group relative flex items-center gap-3 rounded-2xl px-4 py-3 min-h-[48px] text-sm font-medium transition-all ${
-                          pathname === item.href
-                            ? "bg-primary/10 text-primary shadow-sm"
-                            : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
-                        }`}
+                        className={`group relative flex items-center gap-3 rounded-2xl px-4 py-3 min-h-[48px] text-sm font-medium transition-all ${pathname === item.href
+                          ? "bg-primary/10 text-primary shadow-sm"
+                          : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                          }`}
                       >
                         {pathname === item.href && (
                           <div className="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r-full bg-primary" />

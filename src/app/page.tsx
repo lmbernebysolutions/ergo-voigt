@@ -70,11 +70,11 @@ function ServiceCardWithScrollAnimation({
       {/* Background Image with Scroll Animation */}
       <div
         className="absolute inset-0 transition-all duration-[1200ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] z-0"
-        style={{ 
+        style={{
           zIndex: 0,
           opacity: isVisible ? 0.2 : 0.03,
-          transform: isVisible 
-            ? "scale(1) translateX(0%)" 
+          transform: isVisible
+            ? "scale(1) translateX(0%)"
             : "scale(1.15) translateX(-30%)",
           willChange: 'transform, opacity',
         }}
@@ -133,14 +133,14 @@ export default function Home() {
   const [galleryServiceId, setGalleryServiceId] = useState<string | null>(null)
   const imageTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const specialServices = services.filter((s) => s.category === "special")
-  
+
   return (
     <main className="space-y-0 bg-background text-foreground">
       <HeroSection />
-      
+
       {/* Location Cards */}
       <LocationCards />
-      
+
       <section className="relative overflow-hidden py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,oklch(0.92_0.05_260/_0.26),transparent_35%),radial-gradient(circle_at_90%_10%,oklch(0.82_0.12_260/_0.22),transparent_28%)]" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -159,20 +159,25 @@ export default function Home() {
           </div>
 
           <div className="grid gap-4 md:gap-6 lg:gap-8 lg:grid-cols-2">
-            {specialServices.map((service) => {
-              const IconComponent = service.icon
-              return (
+            {specialServices.map((service) => (
+              <Link
+                key={service.id}
+                href={`/therapieangebote#${service.id}`}
+                className="group relative"
+              >
                 <ServiceCardWithScrollAnimation
-                  key={service.id}
                   service={service}
-                  onClick={() => setSelectedServiceId(service.id)}
+                  onClick={() => { }}
                 />
-              )
-            })}
+              </Link>
+            ))}
           </div>
-          <div className="mt-12 flex justify-center">
+          <div className="mt-12 flex justify-center gap-4">
             <Button size="lg" asChild className="rounded-full px-8 shadow-lg shadow-sky-100 font-bold">
-              <Link href="/leistungen">Alle Leistungen ansehen</Link>
+              <Link href="/therapieangebote">Therapieangebote entdecken</Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild className="rounded-full px-8 font-bold">
+              <Link href="/leistungen">Alle Fachbereiche ansehen</Link>
             </Button>
           </div>
         </div>
@@ -190,7 +195,7 @@ export default function Home() {
         {selectedServiceId && (() => {
           const service = specialServices.find((s) => s.id === selectedServiceId)!
           const galleryImages = getServiceImages(service.id, service.image)
-          
+
           const handleImageLongPress = () => {
             setGalleryServiceId(service.id)
           }
@@ -209,7 +214,7 @@ export default function Home() {
 
           return (
             <div className="flex flex-col overflow-y-auto pt-0">
-              <div 
+              <div
                 className="relative h-64 shrink-0 w-full group cursor-pointer"
                 onPointerDown={handleImagePointerDown}
                 onPointerUp={handleImagePointerUp}
@@ -270,7 +275,7 @@ export default function Home() {
       {galleryServiceId && (() => {
         const service = specialServices.find((s) => s.id === galleryServiceId)!
         const galleryImages = getServiceImages(service.id, service.image)
-        
+
         return (
           <ImageGallery
             images={galleryImages}
@@ -361,14 +366,14 @@ export default function Home() {
               Nächster Schritt
             </p>
             <h2 className="font-bold leading-tight text-slate-950 mb-8" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
-              Wir finden einen Termin,<br/> der zu Ihnen passt
+              Wir finden einen Termin,<br /> der zu Ihnen passt
             </h2>
             <p className="mx-auto max-w-2xl leading-relaxed text-slate-800 mb-12" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', lineHeight: '1.7' }}>
               Schreiben Sie uns eine kurze Nachricht oder rufen Sie an. Wir
               melden uns mit einem Terminvorschlag und allen Infos zur
               Verordnung.
             </p>
-            
+
             <div className="flex justify-center">
               <Link href="/praxis">
                 <Button size="lg" className="h-14 rounded-full px-10 text-lg shadow-xl shadow-sky-100 font-bold">Kontakt</Button>

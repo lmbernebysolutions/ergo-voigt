@@ -67,7 +67,7 @@ export default function LeistungenPage() {
 
         <div className="my-12 md:my-16 lg:my-20">
           <FAQSectionWithTabs categories={faqCategories} />
-        </div>
+              </div>
       </div>
 
       <section
