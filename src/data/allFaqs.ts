@@ -1,17 +1,5 @@
-import { faqCategories } from "./faq";
+import { FAQCategory, FAQItem, faqCategories } from "./faq";
 import { services } from "./services";
-
-export interface FAQItem {
-  question: string;
-  answer: string;
-  category?: string;
-}
-
-export interface FAQCategory {
-  id: string;
-  label: string;
-  items: FAQItem[];
-}
 
 // 1. Get General FAQs
 const generalCategories = faqCategories;
