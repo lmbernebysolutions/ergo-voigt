@@ -16,7 +16,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-slate-50 border-t border-slate-200">
       {/* Background Logo Twist */}
-      <div className="pointer-events-none absolute -bottom-24 -left-24 z-0 opacity-[0.03] rotate-12 mix-blend-multiply select-none hidden lg:block">
+      <div className="pointer-events-none absolute -bottom-24 -left-24 z-0 opacity-[0.03] rotate-12 mix-blend-multiply select-none block">
         <img src="/logo.png" alt="" className="w-[600px] h-[600px] object-contain" />
       </div>
 
