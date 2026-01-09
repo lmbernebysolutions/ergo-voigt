@@ -108,18 +108,7 @@ export const teamMembers: TeamMember[] = [
     id: "d-zill",
     name: "Doreen Zill",
     role: "Ergotherapeutin",
-    image: "/team/12 Doreen Tautenhahn.jpg", // Note: Verify image mapping. User listed Doreen Zill but used 12 for Tautenhahn? Let's check files.
-    // In original team.ts: 12 was Doreen Tautenhahn.
-    // The prompt lists "Doreen Zill" separately. 
-    // Wait, the prompt lists "Doreen Zill" AND "Doreen Tautenhahn".
-    // I need to check images. 
-    // Image 12 is Tautenhahn.
-    // Where is Zill? Maybe no image?
-    // I'll leave placeholder or reuse generic if needed.
-    // Ah, wait. Maybe Tautenhahn IS Zill? No, listed separately.
-    // I will use a placeholder or reuse Tautenhahn image for now but check if I have a file.
-    // File list: 12 Doreen Tautenhahn. No Zill.
-    // I will assume Zill needs an image upload later.
+    image: "",
     qualifications: [
       "Dozentin an der Fresenius Schule Zwickau",
       "Reflexintegration",
