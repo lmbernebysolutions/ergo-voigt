@@ -44,7 +44,8 @@ export const teamMembers: TeamMember[] = [
       "Staatlich anerkannte Ergotherapeutin",
       "Neurofeedback/ EEG-Biofeedback Therapeutin",
       "Handrehabilitation",
-      "Auditive Wahrnehmungsverarbeitung (AUDIVA)"
+      "Auditive Wahrnehmungsverarbeitung (AUDIVA)",
+      "Kinesio- und Leuko-Taping"
     ],
   },
   {

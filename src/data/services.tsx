@@ -221,27 +221,20 @@ export const services: Service[] = [
     description: "Die BEMER Therapie ist eine physikalische Gefäßtherapie zur Verbesserung der Mikrozirkulation. Sie stimuliert die natürliche Pumpbewegung der kleinsten Gefäße und fördert so die Durchblutung, den Nährstoffaustausch und den Abtransport von Stoffwechselprodukten. Dies kann zu mehr Antrieb, höherer Leistungsfähigkeit und schnellerer Heilung beitragen. BEMER ist keine alleinige Heilmethode, aber eine effektive unterstützende Maßnahme bei vielen chronischen Erkrankungen.",
     details: [
       "Allgemeine Schmerzen",
-      "Asthma bronchiale",
       "Burnout-Syndrom",
       "Chronisches Erschöpfungssyndrom (CFS – Chronic-Fatique-Syndrom)",
-      "Depression",
       "Durchblutungsstörungen (Raynaud-Syndrom)",
       "Durchblutungsstörungen (Ulcus cruris „Offenes Bein“)",
       "Entzündungen",
-      "Erektile Dysfunktion (ED; Erektionsstörungen)",
       "Hautkrankheiten",
-      "Hypertonie (Bluthochdruck)",
       "COVID Long/ Post",
       "Kreislaufstörungen",
-      "Insomnie (Schlafstörungen)",
       "Psychovegetative Störungen",
       "Rheuma",
       "Stoffwechselstörungen (z.B. Diabetes mellitus)",
       "Wundheilungsstörungen/ Narbenbildung",
-      "Cephalgie (Kopfschmerzen), Migräne",
       "Muskelverspannung",
       "Gelenkschmerzen",
-      "Neuralgien (Nervenschmerzen)",
       "Polyneuropathien (PNP)",
     ],
     benefits: [
@@ -545,24 +538,16 @@ export const services: Service[] = [
     category: "special",
     title: "Therapeutisches Reiten",
     icon: Footprints, // Using Footprints as "Horse" proxy
-    teaser: "Momentan sind alle vorhandenen Therapieplätze belegt.",
+    teaser: "Momentan sind leider alle vorhandenen Therapieplätze belegt.",
     description: (
       <>
         <strong>Momentan sind leider alle vorhandenen Therapieplätze belegt.</strong> Aus personellen Gründen ist z.Z. eine Aufnahme auf die Warteliste nicht möglich. Die Arbeit mit dem Pferd fördert Motorik, Wahrnehmung und psychische Entwicklung ganzheitlich. Leider haben wir aktuell keine Kapazitäten.
       </>
     ),
-    details: [
-      "Ganzheitliche Förderung",
-      "Motorik & Wahrnehmung",
-      "Psychische Stabilität",
-    ],
+    details: [], // Empty details to hide the section if needed or handled in UI
+    benefits: [], // Empty benefits
     alert: true,
-    faqs: [
-      {
-        question: "Gibt es freie Plätze?",
-        answer: "Nein, momentan sind alle Plätze belegt und wir können keine neuen Patienten auf die Warteliste aufnehmen. Bitte sehen Sie von Nachfragen ab."
-      }
-    ],
+    faqs: [], // No FAQs as requested
     image: "/Aue/reiten.webp",
   },
 ];
