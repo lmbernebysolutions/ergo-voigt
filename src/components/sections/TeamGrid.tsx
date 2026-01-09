@@ -29,7 +29,7 @@ export function TeamGrid({ members }: TeamGridProps) {
       <Modal
         isOpen={selectedMember !== null}
         onClose={() => setSelectedMember(null)}
-        maxWidth="3xl"
+        maxWidth="4xl"
       >
         {selectedMember && (
           <div className="flex flex-col md:flex-row h-full md:h-[600px] overflow-hidden">
