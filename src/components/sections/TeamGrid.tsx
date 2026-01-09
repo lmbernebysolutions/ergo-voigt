@@ -32,7 +32,7 @@ export function TeamGrid({ members }: TeamGridProps) {
         maxWidth="3xl"
       >
         {selectedMember && (
-          <div className="flex flex-col md:flex-row h-[600px] overflow-hidden">
+          <div className="flex flex-col md:flex-row h-full md:h-[600px] overflow-hidden">
             {/* Image Section */}
             <div className="relative h-64 md:h-full md:w-1/2 shrink-0 bg-slate-100 overflow-hidden">
               {/* Blurred Background for "Full Size" feel without white borders */}
