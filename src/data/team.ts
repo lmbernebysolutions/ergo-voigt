@@ -41,7 +41,10 @@ export const teamMembers: TeamMember[] = [
     image: "/team/15 Amelie Voigt.png",
     scale: 1.1,
     qualifications: [
-      "Staatlich anerkannte Ergotherapeutin"
+      "Staatlich anerkannte Ergotherapeutin",
+      "Neurofeedback/ EEG-Biofeedback Therapeutin",
+      "Handrehabilitation",
+      "Auditive Wahrnehmungsverarbeitung (AUDIVA)"
     ],
   },
   {
