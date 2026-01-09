@@ -229,9 +229,9 @@ export default function Stack({
                   <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none bg-black/10 ${
                     isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                   }`}>
-                    <div className="bg-white/90 backdrop-blur rounded-full px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm flex items-center gap-1.5">
-                      <ZoomIn className="w-3 h-3" />
-                      {isMobile ? "Klick für öffnen" : "Gedrückt halten"}
+                    <div className="flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-primary shadow-2xl backdrop-blur-sm">
+                      <ZoomIn className="w-4 h-4" />
+                      {isMobile ? "Bildergalerie" : "Gedrückt halten"}
                     </div>
                   </div>
                 )}
