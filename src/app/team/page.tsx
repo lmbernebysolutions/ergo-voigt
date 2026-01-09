@@ -18,12 +18,10 @@ export default function TeamPage() {
             Team
           </p>
           <h1 className="mt-3 font-semibold text-slate-950" style={{ fontSize: 'clamp(1.75rem, 6vw, 3rem)' }}>
-            Wir begleiten mit Ruhe, Klarheit und Humor
+            Wir begleiten mit Fachwissen, Klarheit und Humor
           </h1>
           <p className="mt-4 leading-relaxed text-slate-800" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', lineHeight: '1.7' }}>
-            Unser Team vereint Handtherapie, Pädiatrie, Neurologie und viel
-            Erfahrung mit Angehörigenarbeit. Wir bilden uns kontinuierlich fort
-            und arbeiten nach abgestimmten Qualitätsstandards.
+            Unser Team vereint Kompetenz mit langjähriger Erfahrung. Auch die Angehörigenarbeit ist ein wichtiger Bestandteil unserer Arbeit. Wir bilden uns kontinuierlich fort und arbeiten nach abgestimmten Qualitätsstandards.
           </p>
         </div>
         <div className="relative mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8">

@@ -101,14 +101,14 @@ export default function TherapieangebotePage() {
                                                 </div>
                                             </div>
 
-                                            {/* Details / Anwendungsbereiche (Moved to Left Side) */}
+                                                {/* Details / Anwendungsbereiche (Moved to Left Side) */}
                                             {service.details.length > 0 && (
                                                 <div className="mt-8 space-y-3">
                                                     <p className="font-bold uppercase tracking-wider text-primary text-xs lg:text-sm">Therapeutische Anwendungsbereiche:</p>
                                                     <div className="flex flex-wrap gap-1.5">
                                                         {(() => {
-                                                            const isLongList = service.details.length > 10;
-                                                            const displayItems = isLongList ? service.details.slice(0, 8) : service.details;
+                                                            const isLongList = service.details.length > 5;
+                                                            const displayItems = isLongList ? service.details.slice(0, 4) : service.details;
                                                             
                                                             return (
                                                                 <>
@@ -123,7 +123,7 @@ export default function TherapieangebotePage() {
                                                                                 <AccordionItem value="more-details" className="border-none">
                                                                                     <AccordionContent className="p-0">
                                                                                         <div className="flex flex-wrap gap-1.5 pt-1.5">
-                                                                                            {service.details.slice(8).map((detail, i) => (
+                                                                                            {service.details.slice(4).map((detail, i) => (
                                                                                                 <span key={i} className="inline-flex items-center rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-sm border border-slate-100">
                                                                                                     {detail}
                                                                                                 </span>
