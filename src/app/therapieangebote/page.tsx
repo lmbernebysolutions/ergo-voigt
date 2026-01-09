@@ -104,7 +104,7 @@ export default function TherapieangebotePage() {
                                             {/* Details / Anwendungsbereiche (Moved to Left Side) */}
                                             {service.details.length > 0 && (
                                                 <div className="mt-8 space-y-3">
-                                                    <p className="font-bold uppercase tracking-wider text-primary text-[10px] lg:text-[11px]">Therapeutische Anwendungsbereiche:</p>
+                                                    <p className="font-bold uppercase tracking-wider text-primary text-xs lg:text-sm">Therapeutische Anwendungsbereiche:</p>
                                                     <div className="flex flex-wrap gap-1.5">
                                                         {service.details.map((detail, i) => (
                                                             <span key={i} className="inline-flex items-center rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-sm border border-slate-100">
@@ -136,7 +136,7 @@ export default function TherapieangebotePage() {
                                                     {/* Benefits / Ziele */}
                                                     {service.benefits && service.benefits.length > 0 && (
                                                         <div className="space-y-3">
-                                                            <p className="font-bold uppercase tracking-wider text-primary text-[10px] lg:text-[11px]">Ziele der Behandlung:</p>
+                                                            <p className="font-bold uppercase tracking-wider text-primary text-xs lg:text-sm">Ziele der Behandlung:</p>
                                                             <ul className="grid gap-1.5 sm:grid-cols-1">
                                                                 {service.benefits.map((benefit, i) => (
                                                                     <li key={i} className="flex items-start gap-2.5 py-0.5">
@@ -153,9 +153,9 @@ export default function TherapieangebotePage() {
                                                     {/* FAQs Accordion */}
                                                     {service.faqs && service.faqs.length > 0 && (
                                                         <div>
-                                                            <p className="mb-3 font-bold uppercase tracking-wider text-primary text-[10px] lg:text-[11px]">Häufige Fragen:</p>
+                                                            <p className="mb-3 font-bold uppercase tracking-wider text-primary text-xs lg:text-sm">Häufige Fragen:</p>
                                                             <Accordion type="single" collapsible className="w-full">
-                                                                {service.faqs.map((faq, idx) => (
+                                                                {service.faqs.slice(0, 5).map((faq, idx) => (
                                                                     <AccordionItem key={idx} value={`item-${idx}`} className="border-slate-100">
                                                                         <AccordionTrigger className="text-slate-900 font-semibold hover:text-primary hover:no-underline text-left py-2 text-sm">
                                                                             {faq.question}
@@ -166,6 +166,19 @@ export default function TherapieangebotePage() {
                                                                     </AccordionItem>
                                                                 ))}
                                                             </Accordion>
+                                                            {service.faqs.length > 5 && (
+                                                                <div className="mt-4">
+                                                                    <a 
+                                                                        href="/faq" 
+                                                                        className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                                                                    >
+                                                                        Alle Fragen ansehen
+                                                                        <svg className="ml-1.5 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
+                                                            )}
                                                         </div>
                                                     )}
                                                 </div>
