@@ -237,9 +237,9 @@ function PraxisContent() {
             onClose={handleCloseModal}
             maxWidth="4xl"
           >
-            <div className="flex flex-col md:flex-row h-full md:h-auto md:min-h-[500px] overflow-hidden bg-white">
+            <div className="flex flex-col md:flex-row bg-white md:h-[600px] md:overflow-hidden">
               {/* Left Column: Visuals (Image + Map) */}
-              <div className="w-full md:w-[45%] flex flex-col bg-slate-100 border-r border-slate-100">
+              <div className="w-full md:w-[45%] flex flex-col bg-slate-100 border-r border-slate-100 shrink-0">
                 {/* Main Image */}
                 <div 
                   className="relative aspect-video w-full shrink-0 cursor-pointer group/image"
@@ -328,7 +328,7 @@ function PraxisContent() {
 
               {/* Right Column: Information */}
               <div className="flex-1 flex flex-col min-w-0">
-                <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8">
+                <div className="p-6 md:p-8 space-y-8 md:overflow-y-auto md:h-full">
                   {/* Header */}
                   <div>
                     <h2 className="text-2xl md:text-3xl font-bold text-slate-950 leading-tight">
