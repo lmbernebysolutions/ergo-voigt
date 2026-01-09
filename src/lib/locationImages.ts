@@ -5,12 +5,12 @@ export const locationImageGalleries: Record<string, string[]> = {
     "/Aue/Neurologie & Handtherapie : Orthopädie2.webp",
     "/Aue/Neurologie & Handtherapie : Orthopädie3.webp",
     "/Aue/Pädiatrie & Entwicklung1.webp",
-    "/Aue/reiten.webp",
+    "/Aue/Therapeutisches Reiten.webp",
     "/Aue/Visualtraining (VT).webp",
   ],
   schwarzenberg: [
     "/Schwarzenberg/Praxis von Außen.webp",
-    "/Schwarzenberg/Anmeldung:Wartebereich.webp",
+    "/Schwarzenberg/Anmeldung.webp",
     "/Schwarzenberg/Schwarzenberg Praxis:Pädiatrie & Entwicklung (Kinder & Jugendliche).webp",
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)2.webp",
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)3.webp",
@@ -20,12 +20,12 @@ export const locationImageGalleries: Record<string, string[]> = {
     "/Schwarzenberg/Linkshänderberatung.webp",
   ],
   loessnitz: [
-    "/Lösnitz2/Praxis Lösnitz.webp",
-    "/Lösnitz2/2025-11-04 (1).webp",
-    "/Lösnitz2/2025-11-04 (3).webp",
-    "/Lösnitz2/2025-11-04 (4).webp",
-    "/Lösnitz2/2025-11-04 (5).webp",
-    "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
+    "/Lösnitz2/Warteraum.webp",
+    "/Lösnitz2/Ruheraum.webp",
+    "/Lösnitz2/Entspannungsraum.webp",
+    "/Lösnitz2/Eingang.webp",
+    "/Lösnitz2/Behandlungsraum.webp",
+    "/Lösnitz2/BEMER Therapie.webp",
   ],
 }
 

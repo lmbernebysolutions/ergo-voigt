@@ -26,7 +26,7 @@ const SLIDES = [
   },
   {
     locationId: "loessnitz",
-    img: "/Lösnitz2/Praxis Lösnitz.webp",
+    img: "/Lösnitz2/Warteraum.webp",
     color: "bg-slate-800",
   },
 ]

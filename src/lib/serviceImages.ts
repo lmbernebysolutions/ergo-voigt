@@ -10,7 +10,7 @@ export const serviceImageGalleries: Record<string, string[]> = {
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)5.webp",
   ],
   neurologie: [
-    "/Neurologie_Psychotherapie/Neurologie4.jpeg",
+    "/Neurologie_Psychotherapie/Neurologie1.jpeg",
   ],
   geriatrie: [
     "/Geriatrie (Aktives Hirnleistungstraining - Feinmotorik).webp",
@@ -20,16 +20,14 @@ export const serviceImageGalleries: Record<string, string[]> = {
     "/Aue/Neurologie & Handtherapie : Orthopädie3.webp",
   ],
   psychiatrie: [
-    "/Neurologie_Psychotherapie/Psychotherpie1.jpeg",
-    "/Neurologie_Psychotherapie/Psychotherapie2.jpeg",
-    "/Neurologie_Psychotherapie/Psychotherapie3.jpeg",
+    // Bilder wurden entfernt/verschoben
   ],
   // Spezielle Leistungen
   neurofeedback: [
     "/Neurofeedback.webp",
   ],
   bemer: [
-    "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
+    "/Lösnitz2/BEMER Therapie.webp",
   ],
   visualtraining: [
     "/Aue/Visualtraining (VT).webp",
@@ -39,13 +37,14 @@ export const serviceImageGalleries: Record<string, string[]> = {
     "/Geriatrie (Aktives Hirnleistungstraining - Feinmotorik).webp",
   ],
   pmr: [
-    "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
+    "/Lösnitz2/BEMER Therapie.webp",
   ],
   linkshaenderberatung: [
     "/Schwarzenberg/Linkshänderberatung.webp",
   ],
   "therapeutisches-reiten": [
-    "/Aue/reiten.webp",
+    "/Aue/Therapeutisches Reiten.webp",
+    "/Neurologie_Psychotherapie/Therapeutisches Reiten.jpeg",
   ],
 }
 

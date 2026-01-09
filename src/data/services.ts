@@ -51,7 +51,7 @@ export const services: Service[] = [
       "Sensomotorische Integration: Förderung der Körperwahrnehmung",
       "Emotionale Unterstützung: Begleitung bei der Bewältigung von Herausforderungen",
     ],
-    image: "/Neurologie_Psychotherapie/Neurologie4.jpeg",
+    image: "/Neurologie_Psychotherapie/Neurologie1.jpeg",
   },
   {
     id: "geriatrie",
@@ -104,7 +104,7 @@ export const services: Service[] = [
       "Selbstwertgefühl und Motivation: Stärkung der Eigenverantwortung",
       "Kreative Ausdrucksformen: Kunst- oder Musiktherapie",
     ],
-    image: "/Neurologie_Psychotherapie/Psychotherpie1.jpeg",
+    image: "/Neurologie_Psychotherapie/Neurologie1.jpeg",
   },
 
   // Special Services (Therapieangebote / Besonderes)
@@ -321,7 +321,7 @@ export const services: Service[] = [
         answer: "Ja. Über die Jahre wurde die Physikalische Gefäßtherapie anhand von diversen Fragestellungen wissenschaftlich untersucht, und diese Ergebnisse wurden publiziert. Zum Beispiel die wissenschaftliche Datenbank „Pubmed“ (https://pubmed.ncbi.nlm.nih.gov/) enthält mehrere wissenschaftliche Studien zu unterschiedlichen Anwendungsgebieten."
       }
     ],
-    image: "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
+    image: "/Lösnitz2/BEMER Therapie.webp",
   },
   {
     id: "visualtraining",
@@ -496,7 +496,7 @@ export const services: Service[] = [
         answer: "Eine strikte Altersgrenze wird nicht gezogen. Gängig gilt z.Z. das Grundschulalter als Mindestalter, wobei es für Kinder spezifischere Entspannungsmethoden gibt. Ein Höchstalter gibt es nicht."
       }
     ],
-    image: "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
+    image: "/Lösnitz2/BEMER Therapie.webp",
   },
   {
     id: "linkshaenderberatung",
@@ -557,6 +557,6 @@ export const services: Service[] = [
         answer: "Nein, momentan sind alle Plätze belegt und wir können keine neuen Patienten auf die Warteliste aufnehmen. Bitte sehen Sie von Nachfragen ab."
       }
     ],
-    image: "/Aue/reiten.webp",
+    image: "/Aue/Therapeutisches Reiten.webp",
   },
 ];
