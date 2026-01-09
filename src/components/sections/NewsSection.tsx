@@ -36,7 +36,7 @@ export function NewsSection() {
 
         <div className="flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 md:grid md:gap-6 md:grid-cols-3 md:overflow-visible md:pb-0 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {news.map((item, index) => (
-            <div key={index} className="w-[85vw] flex-none snap-center">
+            <div key={index} className="w-[85vw] max-w-[350px] md:max-w-none md:w-auto flex-none snap-center">
               <Card className="h-full bg-slate-50 border-none shadow-sm hover:shadow-md transition-shadow">
                 <CardHeader className="pb-3">
                   <div className="flex items-center gap-2 text-sm text-primary font-medium mb-2">

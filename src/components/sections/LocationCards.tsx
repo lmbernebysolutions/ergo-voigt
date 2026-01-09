@@ -19,7 +19,7 @@ export function LocationCards() {
 
         <div className="flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 md:grid md:gap-6 lg:gap-8 md:grid-cols-3 md:overflow-visible md:pb-0 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {locations.map((location) => (
-            <div key={location.id} className="w-[85vw] flex-none snap-center group relative h-full">
+            <div key={location.id} className="w-[85vw] max-w-[350px] md:max-w-none md:w-auto flex-none snap-center group relative h-full">
               <InfoCard className="relative h-full flex flex-col items-start gap-4 hover:border-sky-100 hover:ring-2 hover:ring-sky-100 hover:ring-offset-2">
                 {/* Partner Button (Absolute Top Right) */}
                 {location.extraInfo && (

@@ -125,7 +125,7 @@ function PraxisContent() {
                       
                       {/* Click Hint - Mobile always visible, Desktop on hover */}
                       {locationImages.length > 1 && (
-                        <div className="absolute inset-0 flex items-center justify-center opacity-100 md:opacity-0 md:group-hover/image:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        <div className="absolute inset-0 flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover/image:opacity-100 transition-opacity duration-300 pointer-events-none">
                           <div className="flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-primary shadow-2xl backdrop-blur-sm">
                             <ZoomIn className="h-4 w-4" />
                             Bildergalerie
@@ -257,7 +257,7 @@ function PraxisContent() {
                   <div className="absolute bottom-4 left-4 flex items-center gap-2">
                     <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-bold text-slate-900 shadow-lg backdrop-blur-sm transition-transform group-hover/image:scale-105">
                       <ZoomIn className="h-3.5 w-3.5 text-primary" />
-                      <span>Galerie öffnen</span>
+                      <span>Bildergalerie</span>
                     </div>
                     {locationImages.length > 1 && (
                       <div className="rounded-full bg-black/50 px-2.5 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
