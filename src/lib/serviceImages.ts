@@ -17,7 +17,6 @@ export const serviceImageGalleries: Record<string, string[]> = {
     "/Geriatrie (Aktives Hirnleistungstraining - Feinmotorik).webp",
   ],
   orthopaedie: [
-    "/Aue/Neurologie & Handtherapie : Orthopädie.webp",
     "/Aue/Neurologie & Handtherapie : Orthopädie2.webp",
     "/Aue/Neurologie & Handtherapie : Orthopädie3.webp",
   ],
