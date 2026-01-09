@@ -1,17 +1,16 @@
 // Mapping von Location-IDs zu verfügbaren Bildern für die Galerie
 export const locationImageGalleries: Record<string, string[]> = {
   aue: [
-    "/Aue/Auepraxis1.webp",
+    "/Aue/Gruppenraum.webp",
     "/Aue/Neurologie & Handtherapie : Orthopädie2.webp",
     "/Aue/Neurologie & Handtherapie : Orthopädie3.webp",
     "/Aue/Pädiatrie & Entwicklung1.webp",
-    "/Aue/Pädiatrie & Entwicklung2.webp",
     "/Aue/reiten.webp",
     "/Aue/Visualtraining (VT).webp",
   ],
   schwarzenberg: [
-    "/Schwarzenberg/Schwarzenberg Praxis 2.webp",
-    "/Schwarzenberg/Schwarzenberg Praxis3.webp",
+    "/Schwarzenberg/Praxis von Außen.webp",
+    "/Schwarzenberg/Anmeldung:Wartebereich.webp",
     "/Schwarzenberg/Schwarzenberg Praxis:Pädiatrie & Entwicklung (Kinder & Jugendliche).webp",
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)2.webp",
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)3.webp",

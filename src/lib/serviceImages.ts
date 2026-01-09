@@ -4,7 +4,6 @@ export const serviceImageGalleries: Record<string, string[]> = {
   // Standard-Leistungen
   paediatrie: [
     "/Aue/Pädiatrie & Entwicklung1.webp",
-    "/Aue/Pädiatrie & Entwicklung2.webp",
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)2.webp",
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)3.webp",
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)4.webp",

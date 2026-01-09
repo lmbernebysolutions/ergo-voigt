@@ -16,12 +16,12 @@ import { getLocationImages, locationImageGalleries } from "@/lib/locationImages"
 const SLIDES = [
   {
     locationId: "aue",
-    img: "/Aue/Auepraxis1.webp",
+    img: "/Aue/Gruppenraum.webp",
     color: "bg-red-500",
   },
   {
     locationId: "schwarzenberg",
-    img: "/Schwarzenberg/Schwarzenberg Praxis 2.webp",
+    img: "/Schwarzenberg/Praxis von Außen.webp",
     color: "bg-blue-500",
   },
   {
