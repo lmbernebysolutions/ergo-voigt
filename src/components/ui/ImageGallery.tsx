@@ -149,7 +149,7 @@ export function ImageGallery({ images, imageTitles, initialIndex = 0, title, onC
           {images.length > 1 && !isZoomed && (
             <div className="absolute top-20 left-1/2 -translate-x-1/2 z-50 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white text-xs font-medium flex items-center gap-2">
               <ZoomIn className="w-4 h-4" />
-              Klicken zum Zoomen
+              Vergrößern
             </div>
           )}
         </div>

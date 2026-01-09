@@ -10,7 +10,7 @@ import { WarmGlow } from "@/components/ui/WarmGlow"
 import { locations } from "@/data/locations"
 import Stack from "@/components/ui/Stack"
 import { ImageGallery } from "@/components/ui/ImageGallery"
-import { getLocationImages } from "@/lib/locationImages"
+import { getLocationImages, locationImageGalleries } from "@/lib/locationImages"
 
 // Bilder für die Standorte - verwende erste Bilder aus jedem Ordner
 const SLIDES = [
@@ -72,8 +72,14 @@ export function HeroSection() {
   ))
 
   const handleCardClick = (locationId: string, imageIndex: number) => {
-    setGalleryInitialIndex(imageIndex)
-    setGalleryLocationId(locationId)
+    // Check if mobile
+    if (window.innerWidth < 768) {
+       setGalleryLocationId("all")
+       setGalleryInitialIndex(0)
+    } else {
+       setGalleryInitialIndex(imageIndex)
+       setGalleryLocationId(locationId)
+    }
   }
 
   return (
@@ -136,7 +142,7 @@ export function HeroSection() {
                    cardLocationIds={SLIDES.map(s => s.locationId)}
                  />
               </div>
-              <p className="mt-4 text-[10px] font-bold uppercase tracking-widest text-slate-400 text-center">
+              <p className="mt-4 text-[10px] font-bold uppercase tracking-widest text-slate-400 text-center md:block hidden">
                 Tippen zum Wechseln
               </p>
             </div>
@@ -146,8 +152,17 @@ export function HeroSection() {
 
       {/* Image Gallery for Location Images */}
       {galleryLocationId && (() => {
-        const locationImages = getLocationImages(galleryLocationId)
-        const locationName = locations.find(l => l.id === galleryLocationId)?.name || ""
+        let locationImages: string[] = []
+        let locationName = ""
+
+        if (galleryLocationId === "all") {
+           // Flatten all images
+           locationImages = Object.values(locationImageGalleries).flat()
+           locationName = "Alle Standorte"
+        } else {
+           locationImages = getLocationImages(galleryLocationId)
+           locationName = locations.find(l => l.id === galleryLocationId)?.name || ""
+        }
         
         // Helper to generate a title from filename
         const getImageTitle = (path: string) => {

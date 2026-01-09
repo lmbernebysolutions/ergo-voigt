@@ -187,11 +187,11 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <div className="mt-12 flex justify-center gap-4">
-            <Button size="lg" asChild className="rounded-full px-8 shadow-lg shadow-sky-100 font-bold">
+          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+            <Button size="lg" asChild className="rounded-full px-8 shadow-lg shadow-sky-100 font-bold w-full sm:w-auto">
               <Link href="/therapieangebote">Therapieangebote entdecken</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="rounded-full px-8 font-bold">
+            <Button size="lg" variant="outline" asChild className="rounded-full px-8 font-bold w-full sm:w-auto">
               <Link href="/leistungen">Alle Fachbereiche ansehen</Link>
             </Button>
           </div>

@@ -163,10 +163,10 @@ export function Modal({
               )}
             >
               {/* Fixed Close Button - Always Visible on Top */}
-              <div className="sticky top-0 z-[70] flex justify-end p-4 pb-0 md:p-0 md:absolute md:top-4 md:right-4">
+              <div className="sticky top-0 z-[70] flex justify-end p-4 pb-0 md:p-0 md:absolute md:top-4 md:right-4 pointer-events-none">
                 <button
                   onClick={onClose}
-                  className="rounded-full bg-white p-3 min-w-[48px] min-h-[48px] text-slate-700 shadow-2xl transition-all hover:bg-slate-50 hover:scale-110 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 flex items-center justify-center"
+                  className="pointer-events-auto rounded-full bg-white p-3 min-w-[48px] min-h-[48px] text-slate-700 shadow-2xl transition-all hover:bg-slate-50 hover:scale-110 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 flex items-center justify-center mt-safe-top mr-safe-right"
                   aria-label="Modal schließen"
                 >
                   <X className="h-6 w-6" />

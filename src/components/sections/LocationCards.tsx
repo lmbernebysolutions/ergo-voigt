@@ -72,7 +72,7 @@ export function LocationCards() {
                 {/* Hinweistext */}
                 <div className="mt-2 pt-2 border-t border-slate-100 w-full">
                   <p className="text-sm text-slate-500 text-center">
-                    Klicken Sie hier für mehr Informationen
+                    Details ansehen
                   </p>
                 </div>
               </InfoCard>

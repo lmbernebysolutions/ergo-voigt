@@ -207,7 +207,7 @@ export function PraxisLocationCard({
           {/* Hinweistext */}
           <div className="mt-auto pt-4 border-t border-slate-200">
             <p className="text-sm text-slate-500 text-center">
-              Klicken Sie hier für mehr Informationen
+              Details ansehen
             </p>
           </div>
         </div>
