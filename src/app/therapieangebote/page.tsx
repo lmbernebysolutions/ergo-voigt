@@ -117,7 +117,7 @@ export default function TherapieangebotePage() {
                                         </div>
 
                                         {/* Right Side: Detailed Content */}
-                                        <div className="flex flex-col justify-center p-6 md:p-8 lg:p-10">
+                                        <div className="flex flex-col justify-start p-6 md:p-8 lg:p-10">
                                             <div className="space-y-6">
                                                 <div>
                                                     <p className="text-base leading-relaxed text-slate-700 md:text-lg mb-4 font-medium">

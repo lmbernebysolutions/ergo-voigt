@@ -1,12 +1,13 @@
 import { LucideIcon } from "lucide-react"
 import { HandHeart, Brain, Home, Activity, Heart, Eye, Shield, Wind, Hand, Sparkles, Footprints, Info, Zap } from "lucide-react"
+import { ReactNode } from "react"
 
 export interface Service {
   id: string;
   category: "standard" | "special";
   title: string;
   teaser: string;
-  description: string;
+  description: string | ReactNode;
   longDescription?: string; // Detailed description from MDC
   details: string[]; // List of specific applications
   benefits?: string[]; // "Folgende Ziele können erreicht werden"
@@ -227,6 +228,7 @@ export const services: Service[] = [
       "Durchblutungsstörungen (Raynaud-Syndrom)",
       "Durchblutungsstörungen (Ulcus cruris „Offenes Bein“)",
       "Entzündungen",
+      "Erektile Dysfunktion (ED; Erektionsstörungen)",
       "Hautkrankheiten",
       "Hypertonie (Bluthochdruck)",
       "COVID Long/ Post",
@@ -544,7 +546,11 @@ export const services: Service[] = [
     title: "Therapeutisches Reiten",
     icon: Footprints, // Using Footprints as "Horse" proxy
     teaser: "Momentan sind alle vorhandenen Therapieplätze belegt.",
-    description: "Momentan sind leider alle vorhandenen Therapieplätze belegt. Aus personellen Gründen ist z.Z. eine Aufnahme auf die Warteliste nicht möglich. Die Arbeit mit dem Pferd fördert Motorik, Wahrnehmung und psychische Entwicklung ganzheitlich. Leider haben wir aktuell keine Kapazitäten.",
+    description: (
+      <>
+        <strong>Momentan sind leider alle vorhandenen Therapieplätze belegt.</strong> Aus personellen Gründen ist z.Z. eine Aufnahme auf die Warteliste nicht möglich. Die Arbeit mit dem Pferd fördert Motorik, Wahrnehmung und psychische Entwicklung ganzheitlich. Leider haben wir aktuell keine Kapazitäten.
+      </>
+    ),
     details: [
       "Ganzheitliche Förderung",
       "Motorik & Wahrnehmung",
