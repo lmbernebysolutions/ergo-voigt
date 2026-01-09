@@ -106,11 +106,40 @@ export default function TherapieangebotePage() {
                                                 <div className="mt-8 space-y-3">
                                                     <p className="font-bold uppercase tracking-wider text-primary text-xs lg:text-sm">Therapeutische Anwendungsbereiche:</p>
                                                     <div className="flex flex-wrap gap-1.5">
-                                                        {service.details.map((detail, i) => (
-                                                            <span key={i} className="inline-flex items-center rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-sm border border-slate-100">
-                                                                {detail}
-                                                            </span>
-                                                        ))}
+                                                        {(() => {
+                                                            const isLongList = service.details.length > 10;
+                                                            const displayItems = isLongList ? service.details.slice(0, 8) : service.details;
+                                                            
+                                                            return (
+                                                                <>
+                                                                    {displayItems.map((detail, i) => (
+                                                                        <span key={i} className="inline-flex items-center rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-sm border border-slate-100">
+                                                                            {detail}
+                                                                        </span>
+                                                                    ))}
+                                                                    {isLongList && (
+                                                                        <div className="w-full mt-2">
+                                                                            <Accordion type="single" collapsible className="w-full">
+                                                                                <AccordionItem value="more-details" className="border-none">
+                                                                                    <AccordionContent className="p-0">
+                                                                                        <div className="flex flex-wrap gap-1.5 pt-1.5">
+                                                                                            {service.details.slice(8).map((detail, i) => (
+                                                                                                <span key={i} className="inline-flex items-center rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-sm border border-slate-100">
+                                                                                                    {detail}
+                                                                                                </span>
+                                                                                            ))}
+                                                                                        </div>
+                                                                                    </AccordionContent>
+                                                                                    <AccordionTrigger className="text-primary hover:text-primary/80 text-xs font-semibold py-2 justify-start gap-2 hover:no-underline">
+                                                                                        Mehr anzeigen
+                                                                                    </AccordionTrigger>
+                                                                                </AccordionItem>
+                                                                            </Accordion>
+                                                                        </div>
+                                                                    )}
+                                                                </>
+                                                            );
+                                                        })()}
                                                     </div>
                                                 </div>
                                             )}
@@ -138,14 +167,44 @@ export default function TherapieangebotePage() {
                                                         <div className="space-y-3">
                                                             <p className="font-bold uppercase tracking-wider text-primary text-xs lg:text-sm">Ziele der Behandlung:</p>
                                                             <ul className="grid gap-1.5 sm:grid-cols-1">
-                                                                {service.benefits.map((benefit, i) => (
-                                                                    <li key={i} className="flex items-start gap-2.5 py-0.5">
-                                                                        <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
-                                                                            <CheckCircle2 className="h-2.5 w-2.5" />
-                                                                        </div>
-                                                                        <span className="text-sm font-medium text-slate-700 leading-snug">{benefit}</span>
-                                                                    </li>
-                                                                ))}
+                                                                {(() => {
+                                                                    const isLongBenefits = service.benefits.length > 6;
+                                                                    const displayBenefits = isLongBenefits ? service.benefits.slice(0, 5) : service.benefits;
+                                                                    
+                                                                    return (
+                                                                        <>
+                                                                            {displayBenefits.map((benefit, i) => (
+                                                                                <li key={i} className="flex items-start gap-2.5 py-0.5">
+                                                                                    <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                                                                                        <CheckCircle2 className="h-2.5 w-2.5" />
+                                                                                    </div>
+                                                                                    <span className="text-sm font-medium text-slate-700 leading-snug">{benefit}</span>
+                                                                                </li>
+                                                                            ))}
+                                                                            {isLongBenefits && (
+                                                                                <Accordion type="single" collapsible className="w-full border-none">
+                                                                                    <AccordionItem value="more-benefits" className="border-none">
+                                                                                        <AccordionContent className="p-0">
+                                                                                            <ul className="grid gap-1.5 sm:grid-cols-1 pt-1.5">
+                                                                                                {service.benefits.slice(5).map((benefit, i) => (
+                                                                                                    <li key={i} className="flex items-start gap-2.5 py-0.5">
+                                                                                                        <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                                                                                                            <CheckCircle2 className="h-2.5 w-2.5" />
+                                                                                                        </div>
+                                                                                                        <span className="text-sm font-medium text-slate-700 leading-snug">{benefit}</span>
+                                                                                                    </li>
+                                                                                                ))}
+                                                                                            </ul>
+                                                                                        </AccordionContent>
+                                                                                        <AccordionTrigger className="text-primary hover:text-primary/80 text-xs font-semibold py-2 justify-start gap-2 hover:no-underline">
+                                                                                            Mehr Ziele anzeigen
+                                                                                        </AccordionTrigger>
+                                                                                    </AccordionItem>
+                                                                                </Accordion>
+                                                                            )}
+                                                                        </>
+                                                                    );
+                                                                })()}
                                                             </ul>
                                                         </div>
                                                     )}
@@ -169,7 +228,7 @@ export default function TherapieangebotePage() {
                                                             {service.faqs.length > 5 && (
                                                                 <div className="mt-4">
                                                                     <a 
-                                                                        href="/faq" 
+                                                                        href={`/faq?tab=${service.id}`}
                                                                         className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
                                                                     >
                                                                         Alle Fragen ansehen

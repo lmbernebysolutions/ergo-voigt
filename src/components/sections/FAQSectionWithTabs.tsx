@@ -13,13 +13,27 @@ interface FAQSectionWithTabsProps {
 }
 
 export function FAQSectionWithTabs({ categories, className }: FAQSectionWithTabsProps) {
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]?.id || "")
+  const [selectedCategory, setSelectedCategory] = useState("")
   const [activeSubCategoryId, setActiveSubCategoryId] = useState<string | null>(null)
 
-  // Reset sub-category selection when main category changes
   useEffect(() => {
+    // Initialize from URL params or default
+    const params = new URLSearchParams(window.location.search)
+    const tab = params.get('tab')
+    
+    if (tab && categories.find(c => c.id === "therapieangebote")?.subCategories?.some(s => s.id === tab)) {
+      setSelectedCategory("therapieangebote")
+      setActiveSubCategoryId(tab)
+    } else {
+      setSelectedCategory(categories[0]?.id || "")
+    }
+  }, [categories])
+
+  // Reset sub-category selection when main category changes (only if manual change)
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value)
     setActiveSubCategoryId(null)
-  }, [selectedCategory])
+  }
 
   return (
     <div className={cn("mx-auto max-w-4xl", className)}>
@@ -35,7 +49,7 @@ export function FAQSectionWithTabs({ categories, className }: FAQSectionWithTabs
         </p>
       </div>
 
-      <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
+      <Tabs value={selectedCategory} onValueChange={handleCategoryChange} className="w-full">
         <TabsList className="mb-8 w-full justify-start bg-slate-100/50 p-1.5 rounded-2xl h-auto flex-wrap gap-2">
           {categories.map((category) => (
             <TabsTrigger
