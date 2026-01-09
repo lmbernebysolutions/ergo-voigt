@@ -6,7 +6,7 @@ import { locations } from "@/data/locations"
 
 export function LocationCards() {
   return (
-    <section className="bg-slate-50 py-12 md:py-16 lg:py-20">
+    <section className="bg-slate-50 py-8 md:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="font-bold text-slate-950" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
