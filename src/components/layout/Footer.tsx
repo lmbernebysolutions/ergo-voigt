@@ -75,7 +75,7 @@ export function Footer() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {locations.map((location) => (
               <div key={location.id} className="space-y-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
-                <h3 className="font-bold text-slate-900">{location.city}</h3>
+                <h3 className="font-bold text-slate-900">{location.address.city.split('-')[0].split('/')[0]}</h3>
                 
                 <div className="space-y-3 text-sm text-slate-600">
                   <div className="flex items-start gap-3">
