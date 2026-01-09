@@ -137,31 +137,71 @@ export const services: Service[] = [
     faqs: [
       {
         question: "Wie funktioniert das Neurofeedbacktraining?",
-        answer: "Für die Messung der Gehirnaktivität werden EEG-Elektroden am Kopf angebracht. Der Computer analysiert die Signale in Echtzeit und gibt ein audiovisuelles Feedback (z.B. in einem Film oder Spiel). Das Gehirn reagiert sofort darauf und lernt durch Belohnung, seine Aktivität zu optimieren."
+        answer: "Für die Messung der Gehirnaktivität werden EEG-Elektroden am Kopf angebracht, die das Messergebnis an einen Computer weiterleiten. Das EEG wird währenddessen in Echtzeit analysiert, sodass der Computer aus den EEG-Signalen ein audiovisuelles Feedback errechnen kann. Dieses ist wiederum an ein computergesteuertes Belohnungsprinzip gekoppelt und wird auf einem zweiten Bildschirm angezeigt. Das Gehirn beginnt sofort auf die Feedbacksignale zu reagieren und die Gehirnaktivität verändert sich. Die Veränderungen werden von den EEG-Elektroden aufgezeichnet und über die Signalverarbeitung wieder zurückgemeldet. So entwickelt sich ein permanenter Kreislauf, an den sich das Gehirn ständig neu anpassen muss. Durch dieses Training lernt das Gehirn, seine Selbstregulierungsfähigkeit zu optimieren. Dabei verbessern sich die Symptome der Fehlregulierungen und Erfolgserlebnisse entstehen, die das Gehirn motivieren, neu erlernte Selbstregulierungsprozesse immer schneller und nachhaltiger zu erreichen sowie diese auch in den Alltag zu transferieren."
       },
       {
-        question: "Werden die Kosten übernommen?",
-        answer: "Ja, Neurofeedback ist eine anerkannte Therapieform und wird im Rahmen einer ergotherapeutischen Behandlung (Rezept) von der Krankenkasse erstattet."
+        question: "Werden die Kosten für die Behandlung von den gesetzlichen und privaten Krankenkassen übernommen?",
+        answer: "Ja, das Neurofeedbacktraining ist eine anerkannte Therapieform. Sie wird im Rahmen einer ergotherapeutischen Behandlung (Rezept) von der Krankenkasse erstattet."
       },
       {
-        question: "Welcher Arzt kann verordnen?",
-        answer: "Jeder niedergelassene Arzt oder Psychotherapeut mit Kassenzulassung kann Neurofeedback im Rahmen einer ergotherapeutischen Behandlung (meist psychisch-funktionell oder sensomotorisch-perzeptiv) verordnen."
+        question: "Welcher Arzt kann Neurofeedback verordnen?",
+        answer: "Grundsätzlich kann jeder niedergelassene Arzt oder Psychotherapeut mit einer Kassenzulassung Neurofeedback im Rahmen einer ergotherapeutischen Behandlung verordnen."
+      },
+      {
+        question: "Muss Neurofeedback speziell auf dem Rezept vermerkt werden?",
+        answer: "Nein, muss es nicht. Die Verordnung (Rezept) kann mit den gängigen, dem Arzt vertrauten Heilmitteln (psychisch-funktionell oder sensomotorisch-perzeptiv) ausgestellt werden."
+      },
+      {
+        question: "Kann ich Neurofeedback auch ohne Verordnung (Rezept) bekommen?",
+        answer: "Ja, das Neurofeedback ist kein eigenständiges Heilmittel nach den momentan vorherrschenden Heilmittel-Richtlinien der gesetzlichen Krankenkassen. Sie gilt als individuelle Gesundheitsleistung (IGeL)."
+      },
+      {
+        question: "Wieviel kostet eine Neurofeedbackbehandlung, wenn ich sie ohne Rezept in Anspruch nehmen möchte?",
+        answer: "Der momentane Satz für eine Neurofeedbackbehandlung (1h) liegt bei 79,00 €."
+      },
+      {
+        question: "Wer darf Neurofeedbacksitzungen durchführen?",
+        answer: "Personen mit medizinischem Hintergrund, die eine Ausbildung zum zertifizierten Neurofeedbacktherapeuten absolviert haben, dürfen diese Behandlung durchführen. Um die Kosten von der Krankenkasse jedoch erstattet zu bekommen, muss die Person eine ergotherapeutische Ausbildung mit Zusatzqualifikation abgeschlossen haben. Nur diese Personen können im therapeutischen Bereich mit Neurofeedback arbeiten."
+      },
+      {
+        question: "Wie lange dauert eine Sitzung?",
+        answer: "Die Sitzungen dauern mit allen Vor- und Nachbereitungen ca. 45-60 Minuten."
+      },
+      {
+        question: "Sind die Behandlungen schmerzhaft oder unangenehm?",
+        answer: "Die Behandlungen sind vollkommen schmerzfrei."
       },
       {
         question: "Gibt es Nebenwirkungen?",
-        answer: "Nein, bisher sind keine bekannt. Die Behandlung ist vollkommen schmerzfrei."
+        answer: "Nein, bisher sind keine bekannt."
+      },
+      {
+        question: "Wie fühlt man sich nach einer Neurofeedbacksitzung?",
+        answer: "Viele Patienten berichten bereits nach wenigen Sitzungen von einer Verbesserung der Stimmung und einem Wohlgefühl. Sie fühlen sich im Kopf „aufgeräumter“."
       },
       {
         question: "Wie viele Behandlungen sind notwendig?",
-        answer: "Normalerweise sind es 20 – 40 Sitzungen. Erste Erfolge können sich bereits nach wenigen Einheiten einstellen."
+        answer: "Normalerweise sind es 20 – 40 Sitzungen. Für die Beendigung der Therapie ist eine Verbesserung der vorhandenen Symptome im Alltag ausschlaggebend."
       },
       {
-        question: "Kann Neurofeedback Medikamente ersetzen?",
-        answer: "Es ist möglich, dass im Laufe der Behandlungsserie (20-30 Sitzungen) auf eine Medikation nach und nach verzichtet werden kann – immer in Absprache mit dem behandelnden Arzt."
+        question: "Wie lange dauert es, bis Neurofeedback wirkt?",
+        answer: "Erste Erfolge können sich bereits nach den ersten Trainingseinheiten einstellen."
+      },
+      {
+        question: "Kann Neurofeedback Medikamente (z. B. Ritalin®) ersetzen?",
+        answer: "Es ist durchaus möglich, dass im Laufe der Behandlungsserie (20-30 Sitzungen) auf eine Medikation nach und nach verzichtet werden kann (natürlich immer in Absprache mit dem behandelnden Arzt)."
+      },
+      {
+        question: "Wie lange hält die Wirkung einer Neurofeedbacktherapie bzw. eines Neurofeedbacktrainings an?",
+        answer: "Neurofeedback gleicht einem langfristigen Lernprozess, ähnlich wie beim Schwimmen oder Fahrradfahren lernen. Das Gehirn verändert seine Aktivitätenmuster nachhaltig. Studien zeigten diese Effekte auch noch nach 6 Monaten."
       },
       {
         question: "Ab welchem Alter ist Neurofeedback möglich?",
-        answer: "Gängig gilt z.Z. das Vorschulalter als Mindestalter. Ein Höchstalter gibt es nicht, auch ältere Menschen profitieren davon."
+        answer: "Eine strikte Altersgrenze wird nicht gezogen, da das Training keiner bewussten Anforderung unterliegt. Gängig gilt z.Z. das Vorschulalter als Mindestalter. Ein Höchstalter gibt es nicht, besonders älteren Menschen mit nachlassenden geistigen Fähigkeiten kann Neurofeedback helfen."
+      },
+      {
+        question: "Ist es ratsam, als Erwachsener ein Neurofeedbacktraining zu beginnen?",
+        answer: "Gerade im Erwachsenenalter kann es sinnvoll sein, seine Konzentrationsleistung zu verbessern. Neuste Untersuchungen haben eine deutliche Verbesserung der Merkfähigkeit nach einem Neurofeedbacktraining nachgewiesen."
       }
     ],
     image: "/Neurofeedback.webp",
@@ -196,27 +236,67 @@ export const services: Service[] = [
     faqs: [
       {
         question: "Wie wirkt die BEMER Therapie?",
-        answer: "BEMER-Geräte senden ein spezielles elektromagnetisches Signal, das die natürliche Pumpbewegung der Kapillaren stimuliert. Dies verbessert die Mikrozirkulation und damit die Versorgung der Zellen mit Sauerstoff."
+        answer: "Die BEMER-Geräte (Matte/Applikator) arbeiten mit einem speziellen elektromagnetischen Signal, das auf den Körper wirkt und die natürliche Pumpbewegung der Kapillaren stimuliert. Diese magnetischen Impulse werden über spezielle Applikatoren, die auf der Matte platziert sind, an den Körper weitergegeben. Durch diese gezielte Stimulation wird die Mikrozirkulation in den kleinsten Blutgefäßen angeregt und verbessert. Dadurch wird die Durchblutung gefördert und die Versorgung der Zellen mit Sauerstoff und Nährstoffen optimiert. Durch die gezielte Anregung der Zellfunktionen werden die körpereigenen Regulationsmechanismen/ Selbstheilungskräfte aktiviert und gestärkt."
       },
       {
-        question: "Wie lange dauert eine Behandlung?",
-        answer: "Die Ganzkörper-Therapie dauert normalerweise 8 Minuten. Lokal-Therapien können zwischen 8 und 20 Minuten variieren."
-      },
-      {
-        question: "Werden die Kosten übernommen?",
-        answer: "Nein, die BEMER Therapie ist eine Selbstzahlerleistung (IGeL). Je nach Aufwand liegen die Kosten zwischen 39,00 € und 69,00 €."
-      },
-      {
-        question: "Gibt es Nebenwirkungen?",
-        answer: "Nein. Seit 1998 sind keine Nebenwirkungen bekannt. Die Behandlung ist schmerzfrei."
+        question: "Wie lange dauert eine BEMER Behandlung?",
+        answer: "Die Dauer der Ganzkörper-Therapie beträgt normalerweise 8 Minuten. Die Lokal-Therapien können zwischen 8 und 20 Minuten variieren (je nach Beschwerden und Behandlungsart). Optimalerweise wird die BEMER Therapie mit anderen regulationsmedizinischen Therapieformen wie Akupunktur o.ä. angewandt."
       },
       {
         question: "Kann ich BEMER mit anderen Therapien kombinieren?",
-        answer: "Ja, das ist sogar sinnvoll. Durch die durchblutungssteigernde Wirkung können andere Therapien (z.B. Akupunktur, manuelle Therapie) verstärkt werden."
+        answer: "Es ist sogar sinnvoll, die BEMER Therapie mit anderen regulationsmedizinischen Therapien zu kombinieren. Durch die durchblutungssteigernde Wirkung der BEMER Therapie können andere Therapiemethoden in ihrer Wirkung verstärkt werden. So können Akupunktur, Neuraltherapie, orthomolekulare Infusionen und manuelle Therapien bessere Therapieeffekte erzielen, wenn man diese Therapien auf einer BEMER Therapiematte durchführt."
       },
       {
-        question: "Wann darf die Therapie nicht angewendet werden?",
-        answer: "Bei immunsuppressiver Therapie nach Transplantationen oder bei aktiven medizinischen Implantaten (z.B. Herzschrittmacher, Insulinpumpen) ist die Anwendung ausgeschlossen."
+        question: "Werden die Kosten für die Behandlung von den gesetzlichen und privaten Krankenkassen übernommen?",
+        answer: "Nein. Die Behandlung ist ausschließlich eine Selbstzahlerleistung. Im Rahmen einer ergotherapeutischen Behandlung kann, je nach Beschwerdebild, die BEMER Therapie zum Einsatz kommen."
+      },
+      {
+        question: "Wieviel kostet eine BEMER Behandlung, wenn ich sie ohne Rezept in Anspruch nehmen möchte?",
+        answer: "Je nach Zeitaufwand und Erkrankung variiert der Betrag zwischen 39,00 € und 69,00 €."
+      },
+      {
+        question: "Sind die Behandlungen schmerzhaft oder unangenehm?",
+        answer: "Die Behandlungen sind vollkommen schmerzfrei."
+      },
+      {
+        question: "Gibt es Nebenwirkungen?",
+        answer: "Nein. Für die BEMER Therapiegeräte besteht eine gesetzliche Meldepflicht von unerwünschten Ereignissen oder besonderen Vorkommnissen. Seit 1998 wurden weltweit keine Nebenwirkungen oder besondere Vorkommnisse mitgeteilt bzw. festgestellt."
+      },
+      {
+        question: "In welchen Fällen darf die Therapie nicht angewendet werden?",
+        answer: "Bei Patienten die eine immunsuppressive Therapie im Zusammenhang mit einer Transplantation, zum Beispiel nach Allogen-Zelltransplantation oder Knochenmark- oder Stammzellentransplantation durchgeführt haben. Aktive medizinische Implantate, die zu einer Stimulation führen (z. B. Herzschrittmacher, Defibrillatoren, Gehirnstimulatoren, Muskelstimulatoren) oder zur Abgabe von Medikamenten gedacht sind (Medikamentenpumpen, wie zum Beispiel: Insulinpumpen) schließen eine Anwendung der BEMER Therapie aus. Im Zweifel fragen Sie immer Ihren behandelnden Arzt!"
+      },
+      {
+        question: "Kann es mit der Physikalischen Gefäßtherapie zu Wechselwirkungen mit anderen Medikamenten oder Therapien kommen?",
+        answer: "Unter bestimmten Umständen und bei täglicher Anwendung kann es zu Wechselwirkungen kommen. Daher empfehlen wir, Beschwerden, Symptome oder Erkrankungen vor der Anwendung der BEMER Geräte mit einem Arzt/ Therapeuten abzuklären. Von sonstigen Gerinnungshemmern wie ASS oder nichtsteroiden Arzneimitteln oder sonstigen Blutdrucksenkern ist keine Wechselwirkung mit der BEMER Anwendung bekannt."
+      },
+      {
+        question: "Wie fühlt man sich nach einer BEMER Behandlung?",
+        answer: "Viele Patienten berichten während der Behandlung von einem leichten Kribbeln oder einem „schwebenden“ Gefühl. Einige Zeit nach der Behandlung kommt es im Optimalfall zur Verringerung der Beschwerden."
+      },
+      {
+        question: "Wie oft darf man bemern?",
+        answer: "Optimal ist eine zweimalige tägliche Anwendung, dabei beginnt man immer mit niedriger Intensität, um eine zu starke Erstreaktion zu vermeiden! Bei empfindlichen Menschen genügen anfangs oft weinigere und kürzere Anwendungen, einmal täglich oder einmal alle drei bis vier Tage."
+      },
+      {
+        question: "Wie lange ist die Anwendungsdauer?",
+        answer: "Sie können die Bemer-Therapie langfristig anwenden. Im Laufe der Zeit sind die oft anfangs sehr deutlichen Empfindungen während und nach der Anwendung geringer, da sie nach und nach auf ein besseres gesundheitliches Niveau kommen. Eine Höchstmenge oder Überdosierung ist nicht gegeben."
+      },
+      {
+        question: "Wie lange dauert es, bis die Bemer Therapie wirkt?",
+        answer: "Ab der ersten Behandlung können sich bereits Verbesserungen einstellen, da es sofort zu einer verbesserten Durchblutung kommt."
+      },
+      {
+        question: "Wie lange hält der Therapieerfolg an?",
+        answer: "Die Physikalische Gefäßtherapie ist zur langfristigen und regelmäßigen Anwendung konzipiert. Die positiven Wirkungen der BEMER Therapie bleiben so über einen längeren Zeitraum erhalten."
+      },
+      {
+        question: "Wer darf die BEMER Therapie durchführen?",
+        answer: "BEMER Produkte sind medizinische Geräte der FDA-Klasse 2 und können von jeder Person nach einer Schulung angewendet werden."
+      },
+      {
+        question: "Gibt es wissenschaftliche Studien über den BEMER?",
+        answer: "Ja. Über die Jahre wurde die Physikalische Gefäßtherapie anhand von diversen Fragestellungen wissenschaftlich untersucht, und diese Ergebnisse wurden publiziert. Zum Beispiel die wissenschaftliche Datenbank „Pubmed“ (https://pubmed.ncbi.nlm.nih.gov/) enthält mehrere wissenschaftliche Studien zu unterschiedlichen Anwendungsgebieten."
       }
     ],
     image: "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
@@ -246,20 +326,56 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "Muss eine Voruntersuchung erfolgen?",
-        answer: "Ja, unbedingt. Eine Abklärung beim Augenarzt (organisch) und eine umfassende Diagnostik bei einem Optometristen sind notwendig. Der Optometrist erstellt den Trainingsplan."
+        question: "Wie funktioniert das VT?",
+        answer: "Anders als bei herkömmlichen Sehübungen zielt Visualtraining nicht nur darauf ab, die Augenmuskulatur zu trainieren. Diese ist in der Regel bereits leistungsfähig genug. Es geht vielmehr darum, gezielte Maßnahmen gegen spezifische visuelle Defizite zu ergreifen. Visualtraining wird individuell abgestimmt, ein aufbauender Trainingsplan durch einen Optometristen erstellt und unter der Anleitung eines Sehtrainers durchgeführt. Dieses Training ist nicht mit allgemeinen Sehübungen zu verwechseln, die manchmal in der Öffentlichkeit beschrieben werden."
       },
       {
-        question: "Werden die Kosten übernommen?",
-        answer: "Nein, VT ist eine Selbstzahlerleistung. Die augenärztliche Voruntersuchung zahlt die Kasse, die optometrische Analyse und das Training selbst in der Regel nicht."
+        question: "Muss eine Voruntersuchung durch einen Augenarzt und einen Optometristen vor der Behandlung erfolgen?",
+        answer: "Unbedingt. Eine Abklärung, ob evtl. krankhafte Veränderungen am Auge vorliegen, ist vor einem VT notwendig. Ebenso eine Vorstellung bei einem Optometristen. Dieser führt eine umfassende Diagnostik durch und erstellt den für uns bindenden Trainingsplan."
+      },
+      {
+        question: "Werden die Kosten für diese Untersuchungen von den gesetzlichen und privaten Krankenkassen übernommen?",
+        answer: "Die Untersuchung durch einen Augenarzt (organische Abklärung) wird von den Kassen getragen. Die Untersuchung bei einem Optometristen (Sehanalyse, Funktionsprüfung, Binokularprüfung, Beurteilung des vorderen und hinteren Augenabschnitts) nicht. Die Untersuchung durch einen Optometristen ist sehr umfangreich und kann zwischen 60 und 90 min. dauern."
+      },
+      {
+        question: "Werden die Kosten für diese VT von den gesetzlichen und privaten Krankenkassen übernommen?",
+        answer: "Nein, VT ist grundsätzlich eine Selbstzahlerleistung. Der Arzt kann aber, bei vorliegender Diagnose einer Wahrnehmungsverarbeitungsstörung eine Verodnung ausstellen. Die augenärztliche Voruntersuchung zahlt die Kasse, die optometrische Analyse und das Training selbst in der Regel nicht."
+      },
+      {
+        question: "Wieviel kostet ein VT, wenn ich es ohne Rezept in Anspruch nehmen möchte?",
+        answer: "Der momentane Satz für eine VT (30 min.) liegt bei 49,00 €."
       },
       {
         question: "Wie wird das VT durchgeführt?",
-        answer: "Das Training findet in der Praxis (ca. 30 Min.) und zu Hause (täglich einige Minuten) statt. Es kommen individuelle Sehübungen und PC-Anwendungen (z.B. EYEBAB) zum Einsatz."
+        answer: "In einer ruhigen und entspannten Umgebung wird das Training durchgeführt. Dabei kommen verschiedene, individuelle Sehübungen, Wahrnehmungsübungen und PC Anwendungen wie das EYBAB zum Einsatz. EYEBAB nutzt ein spielbasiertes Lernkonzept, das durch abwechslungsreiche Aufgaben und interaktive Herausforderungen motiviert und den Spaß am Training fördert. Das VT wird sowohl in der Praxis als auch zu Hause durchgeführt (Hausaufgaben)."
       },
       {
-        question: "Wie lange dauert es, bis sich ein Erfolg einstellt?",
-        answer: "Das hängt vom Beschwerdebild und dem Übungsfleiß ab und kann nicht pauschalisiert werden. Eine Erfolgskontrolle erfolgt halbjährlich."
+        question: "Wer darf VT durchführen?",
+        answer: "Personen mit medizinischem Hintergrund, die eine Zusatzqualifizierung bei einem Optometristen absolviert haben."
+      },
+      {
+        question: "Wie lange dauert ein VT in der Praxis?",
+        answer: "Die Sitzungen dauern mit allen Vor- und Nachbereitungen ca. 30 min."
+      },
+      {
+        question: "Wie häufig muss ein VT durchgeführt werden?",
+        answer: "In der Praxis werden wöchentlich, aber auch 14-tägig bzw. alle 3 Wochen Termine angeboten. Zu diesen Terminen werden die Übungen angeleitet und kontrolliert. Das häusliche Training sollte bestenfalls täglich (einige Minuten) erfolgen. Ein individueller Trainingsplan wird dafür vom Optometristen erstellt. Dieser legt die Reihenfolge der Übungen, was trainiert werden soll, mit welchen Mitteln dies durchgeführt werden soll sowie die Dauer der Übungen fest."
+      },
+      {
+        question: "Sind die Behandlungen schmerzhaft oder unangenehm?",
+        answer: "Die Behandlungen sind vollkommen schmerzfrei."
+      },
+      {
+        question: "Gibt es Nebenwirkungen?",
+        answer: "Nein, bisher sind keine bekannt."
+      },
+      {
+        question: "Wie viele VT Sitzungen sind notwendig?",
+        answer: "Dies hängt je nach Beschwerdebild und dem „Übungsfleiß“ der Person ab. Eine Kontrolle der Erfolge des VT wird halbjährlich bzw. ganzjährig vom Optometristen durchgeführt. Die Termine in der Praxis hängen ebenfalls vom Beschwerdebild, dem „Übungsfleiß“ und der Anzahl der Übungen ab."
+      },
+      {
+        question: "Ab welchem Alter ist ein VT möglich?",
+        answer: "Eine strikte Altersgrenze wird nicht gezogen. Gängig gilt z.Z. das Vorschulalter als Mindestalter. Ein Höchstalter gibt es nicht, da auch ältere Menschen mit nachlassenden visuellen Fähigkeiten von dem VT profitieren können."
       }
     ],
     image: "/Aue/Visualtraining (VT).webp",
@@ -289,7 +405,7 @@ export const services: Service[] = [
     faqs: [
       {
         question: "Wie funktioniert Sturzprävention?",
-        answer: "Dazu gehören körperliche Übungen zur Verbesserung der Balance und Kraft, die Anpassung der Wohnumgebung (Stolperfallen beseitigen) sowie die Schulung in sicherem Gehen und Bewegen."
+        answer: "Dazu gehören körperliche Übungen zur Verbesserung der Balance und Kraft, die Anpassung der Wohnumgebung (Stolperfallen beseitigen) sowie die Schulung in sicherem Gehen und Bewegen"
       }
     ],
     image: "/Sturzprävention.webp",
@@ -318,20 +434,32 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "Wie funktioniert PMR?",
-        answer: "Muskelgruppen werden in einer bestimmten Reihenfolge bewusst angespannt und entspannt. Dies fördert die Körperwahrnehmung und die Fähigkeit, selbstständig in einen Entspannungszustand zu wechseln."
+        question: "Wie funktioniert das PMR?",
+        answer: "Bei der progressiven Muskelrelaxation werden verschiedene Muskelgruppen systematisch angespannt und anschließend entspannt. Dies geschieht in der Regel in einer bestimmten Reihenfolge. Durch das bewusste Anspannen und Entspannen der Muskeln wird ein besseres Körperbewusstsein gefördert und die Fähigkeit zur Entspannung verbessert."
       },
       {
-        question: "Werden die Kosten übernommen?",
-        answer: "Im Rahmen einer ergotherapeutischen Behandlung (Rezept) ja. Ohne Rezept kann PMR als Selbstzahlerleistung oder im Rahmen von zertifizierten Gesundheitskursen (ggf. mit Kassenzuschuss) besucht werden."
+        question: "Werden die Kosten für eine PMR von den gesetzlichen und privaten Krankenkassen übernommen?",
+        answer: "Ja und nein. Eine PMR kann im Rahmen einer ergotherapeutischen Behandlung (Rezept) zum Einsatz kommen. Dies wird dann von der Krankenkasse übernommen. Falls keine ergotherapeutische Verordnung vorliegt, kann man auch im Rahmen von unseren zertifizierten Gesundheitskursen teilnehmen bzw. dies auch als Einzelsitzung in unserer Einrichtung wahrnehmen. Bitte fragen Sie bei Ihrer Krankenkasse nach, welche Kursangebote sie mit Gutscheinen unterstützt."
       },
       {
-        question: "Wie lange dauert eine Sitzung?",
-        answer: "Eine Sitzung dauert ca. 60 Minuten. Die Übungen sind vollkommen schmerzfrei."
+        question: "Wieviel kostet eine PMR, wenn ich es ohne Rezept in Anspruch nehmen möchte?",
+        answer: "Eine private Einzelsitzung (60 min.) kostet 79,00 €. Im Rahmen eines Kursangebotes richtet sich der Betrag nach der Anzahl der Kursteilnehmer. Fragen Sie gern in unserer Einrichtung nach."
       },
       {
-        question: "Ab welchem Alter ist PMR möglich?",
-        answer: "Gängig gilt das Grundschulalter als Mindestalter. Ein Höchstalter gibt es nicht."
+        question: "Wie lange dauert eine PMR?",
+        answer: "Die Sitzungen dauern mit allen Vor- und Nachbereitungen ca. 60 min."
+      },
+      {
+        question: "Ist die Durchführung einer PMR schmerzhaft oder unangenehm?",
+        answer: "Die Übungen sind vollkommen schmerzfrei."
+      },
+      {
+        question: "Gibt es Nebenwirkungen?",
+        answer: "Nein, bisher sind keine bekannt."
+      },
+      {
+        question: "Ab welchem Alter kann die PMR durchgeführt werden?",
+        answer: "Eine strikte Altersgrenze wird nicht gezogen. Gängig gilt z.Z. das Grundschulalter als Mindestalter, wobei es für Kinder spezifischere Entspannungsmethoden gibt. Ein Höchstalter gibt es nicht."
       }
     ],
     image: "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
@@ -353,16 +481,24 @@ export const services: Service[] = [
     ],
     faqs: [
       {
-        question: "Werden die Kosten übernommen?",
-        answer: "Ja, wenn eine ergotherapeutische Verordnung (motorisch-funktionell) vorliegt. Ohne Rezept ist es eine Selbstzahlerleistung (IGeL)."
+        question: "Werden die Kosten für die Beratung von den gesetzlichen und privaten Krankenkassen übernommen?",
+        answer: "Ja und nein. Die Beratung kann im Rahmen einer ergotherapeutischen Behandlung von der Krankenkasse erstattet werden. Dafür muss ein Arzt eine Verordnung für Ergotherapie ausstellen."
       },
       {
-        question: "Muss die Beratung speziell auf dem Rezept stehen?",
-        answer: "Nein, eine normale Verordnung für Ergotherapie (motorisch-funktionell) reicht aus."
+        question: "Welcher Arzt kann verordnen?",
+        answer: "Grundsätzlich kann jeder niedergelassene Arzt mit einer Kassenzulassung eine motorisch-funktionelle Behandlung verordnen."
       },
       {
-        question: "Was kostet eine Beratung ohne Rezept?",
-        answer: "Der Satz für eine Beratung/Testung (1h) liegt bei ca. 79,00 €."
+        question: "Muss die Beratung speziell auf dem Rezept vermerkt werden?",
+        answer: "Nein, muss es nicht."
+      },
+      {
+        question: "Kann ich eine Linkshänderberatung auch ohne Verordnung (Rezept) bekommen?",
+        answer: "Ja, eine Linkshänderberatung ist kein eigenständiges Heilmittel nach den momentan vorherrschenden Heilmittel-Richtlinien der gesetzlichen Krankenkassen. Sie gilt als individuelle Gesundheitsleistung (IGeL)."
+      },
+      {
+        question: "Wieviel kostet eine Beratung, wenn ich sie ohne Rezept in Anspruch nehmen möchte?",
+        answer: "Der momentane Satz für eine Beratung/Testung (1h) liegt bei 79,00 €."
       }
     ],
     image: "/Schwarzenberg/Linkshänderberatung.webp",
