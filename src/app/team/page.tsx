@@ -1,12 +1,18 @@
 import { TeamGrid } from "@/components/sections/TeamGrid"
 import { teamMembers } from "@/data/team"
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function TeamPage() {
   return (
     <main className="bg-background text-foreground">
       <section className="relative overflow-hidden bg-gradient-to-br from-secondary/80 via-white to-background pb-12 pt-10 md:pb-16">
         <div className="pointer-events-none absolute inset-0 orb-sheen" />
+        {/* Watermark Logo Twist (Top Right, -12deg) */}
+        <div className="pointer-events-none absolute -top-24 -right-24 z-0 opacity-[0.04] -rotate-12 mix-blend-multiply select-none hidden lg:block">
+          <img src="/logo.png" alt="" className="w-[600px] h-[600px] object-contain" />
+        </div>
         <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
             Team
@@ -32,7 +38,7 @@ export default function TeamPage() {
               <ul className="mt-4 grid gap-3 text-sm text-foreground sm:grid-cols-2">
                 {[
                   "Regelmäßige interne Supervision & Fortbildungen",
-                  "Strukturierte Einarbeitung neuer Kolleg:innen",
+                  "Strukturierte Einarbeitung neuer Kolleg/innen",
                   "Interdisziplinäre Abstimmungen mit Ärzten & Pädagogen",
                   "Ruhige Räume mit weichen Farben und viel Licht",
                 ].map((item) => (
@@ -52,6 +58,29 @@ export default function TeamPage() {
       <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <TeamGrid members={teamMembers} />
       </div>
+
+      <section className="relative overflow-hidden py-16 lg:py-20 bg-slate-50">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,oklch(0.92_0.05_260/_0.35),transparent_30%),radial-gradient(circle_at_85%_15%,oklch(0.82_0.12_260/_0.25),transparent_28%)]" />
+        <div className="relative mx-auto max-w-5xl rounded-[40px] bg-white p-12 shadow-2xl shadow-slate-200/50 ring-1 ring-slate-100 lg:p-20">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary mb-6">
+              Kontakt
+            </p>
+            <h2 className="font-bold leading-tight text-slate-950 mb-8" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
+              Wir sind für Sie da
+            </h2>
+            <p className="mx-auto max-w-2xl leading-relaxed text-slate-800 mb-12" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', lineHeight: '1.7' }}>
+              Sie haben Fragen zu unseren Therapeuten oder möchten einen Termin vereinbaren? Melden Sie sich gerne bei uns.
+            </p>
+
+            <div className="flex justify-center">
+              <Link href="/praxis">
+                <Button size="lg" className="h-14 rounded-full px-10 text-lg shadow-xl shadow-sky-100 font-bold">Termin vereinbaren</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }

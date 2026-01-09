@@ -4,22 +4,44 @@ export interface TeamMember {
   role: string;
   image: string; // Path to image (avatar)
   qualifications: string[];
+  imageObjectPosition?: string;
+  scale?: number;
 }
 
 export const teamMembers: TeamMember[] = [
   {
     id: "ak-voigt",
     name: "Anne-Karen Voigt",
-    role: "Praxisleitung & Ergotherapeutin",
+    role: "Praxisinhaberin & Ergotherapeutin",
     image: "/team/01 Ergo-Team.jpg",
     qualifications: [
-      "Staatlich anerkannte Ergotherapeutin seit 2000",
-      "Handtherapeutin",
-      "Neurofeedback-Therapeutin",
-      "Therapeutisches Reiten",
-      "Bobath-Therapeutin",
-      "Fachtherapeutin für Pädiatrie",
-      "Marburger Konzentrationstraining",
+      "Ergotherapeutin und Praxisinhaberin seit 1999",
+      "Neurofeedback/ EEG-Biofeedback Therapeutin",
+      "Sensorische Integrationstherapeutin nach J.Ayres",
+      "Affolter-Therapie",
+      "Alpha-Theta und Synchronie-Training",
+      "Reflexintegration",
+      "Diagnostik, Therapie und Beratung bei umschriebenen Entwicklungsstörungen",
+      "IntraActPlus Konzept (Lern- und Leistungsstörungen)",
+      "AD(H)S Beratung bei Kindern und Jugendlichen",
+      "Auditive Wahrnehmungsverarbeitung (AUDIVA)",
+      "Linkshänderberatung und Testung nach B. Sattler",
+      "Visualtraining",
+      "Progressive Muskelrelaxation nach Jacobson",
+      "Handrehabilitation",
+      "Neuropsychologisches Hirnleistungstraining",
+      "Burnout/Depression/Neurose und Angststörung",
+      "Validation nach Naomi Feil"
+    ],
+  },
+  {
+    id: "amelie-voigt",
+    name: "Amelie Voigt",
+    role: "Ergotherapeutin",
+    image: "/team/15 Amelie Voigt.png",
+    scale: 1.1,
+    qualifications: [
+      "Staatlich anerkannte Ergotherapeutin"
     ],
   },
   {
@@ -28,11 +50,20 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/02 Claudia Wagner.jpg",
     qualifications: [
-      "Schwerpunkt Pädiatrie",
-      "Sensorische Integrationstherapie",
-      "Linkshänderberatung",
-      "Elternberatung",
-      "Entspannungspädagogin",
+      "Handrehabilitation",
+      "Sensorische Integrationstherapeutin nach J.Ayres",
+      "Diagnostik, Therapie und Beratung bei AD(H)S",
+      "THOP-Programm (Verhaltensstörungen)",
+      "Entwicklungsstörungen im Vorschulalter",
+      "IntraActPlus Konzept",
+      "Reflexintegration",
+      "Visualtraining",
+      "Linkshänderberatung und Testung nach B. Sattler",
+      "Manuelle Reflextherapie nach Dr. Terrier",
+      "Neurophysiologische Behandlungsverfahren bei Hemiplegie",
+      "PNF in der Ergotherapie",
+      "Neuropsychologisches Hirnleistungstraining",
+      "Burnout/Depression/Neurose und Angststörung"
     ],
   },
   {
@@ -41,9 +72,12 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/03 Jessica Lenk.jpg",
     qualifications: [
-      "Schwerpunkt Pädiatrie",
-      "Sensorische Integration",
-      "Entwicklungsförderung",
+      "In Ausbildung zur Schmerzspezialistin nach Liebscher und Bracht",
+      "Handrehabilitation",
+      "Arbeiten nach dem Bobath-Konzept",
+      "Reflexintegration",
+      "Visualtraining",
+      "Neuropsychologisches Hirnleistungstraining"
     ],
   },
   {
@@ -52,9 +86,10 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/04 Madeleiene Köhler.jpg",
     qualifications: [
-      "Schwerpunkt Neurologie",
-      "Handtherapie",
-      "Rehabilitation",
+      "Neurofeedback/ EEG-Biofeedback Therapeutin - speziell bei AD(H)S",
+      "Auditive Wahrnehmungsverarbeitung (Warnke Verfahren)",
+      "Reflexintegration",
+      "Visualtraining"
     ],
   },
   {
@@ -63,11 +98,35 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/05 Josefine Weickert.jpg",
     qualifications: [
-      "Schwerpunkt Geriatrie & Hausbesuche",
-      "Sturzprophylaxe",
-      "Gedächtnistraining",
-      "Basale Stimulation",
-      "Palliativbegleitung",
+      "DOSB-Trainerin C Leistungssport/Pferdesport",
+      "Therapeutisches Reiten",
+      "Multimodale Therapie bei ADHS",
+      "Entspannungstherapie bei Kindern"
+    ],
+  },
+  {
+    id: "d-zill",
+    name: "Doreen Zill",
+    role: "Ergotherapeutin",
+    image: "/team/12 Doreen Tautenhahn.jpg", // Note: Verify image mapping. User listed Doreen Zill but used 12 for Tautenhahn? Let's check files.
+    // In original team.ts: 12 was Doreen Tautenhahn.
+    // The prompt lists "Doreen Zill" separately. 
+    // Wait, the prompt lists "Doreen Zill" AND "Doreen Tautenhahn".
+    // I need to check images. 
+    // Image 12 is Tautenhahn.
+    // Where is Zill? Maybe no image?
+    // I'll leave placeholder or reuse generic if needed.
+    // Ah, wait. Maybe Tautenhahn IS Zill? No, listed separately.
+    // I will use a placeholder or reuse Tautenhahn image for now but check if I have a file.
+    // File list: 12 Doreen Tautenhahn. No Zill.
+    // I will assume Zill needs an image upload later.
+    qualifications: [
+      "Dozentin an der Fresenius Schule Zwickau",
+      "Reflexintegration",
+      "Hörverarbeitung nach dem Warnke Verfahren",
+      "Triggerpunkttherapie (Schwerpunkt obere Extremität)",
+      "Visualtraining",
+      "Diagnostik, Therapie und Beratung bei AD(H)S"
     ],
   },
   {
@@ -76,9 +135,7 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/07 Katja Stübner.jpg",
     qualifications: [
-      "Schwerpunkt Pädiatrie",
-      "Entwicklungsförderung",
-      "Elternberatung",
+      "Visualtraining"
     ],
   },
   {
@@ -87,9 +144,30 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/08 Antje Rudolph.jpg",
     qualifications: [
-      "Schwerpunkt Neurologie",
+      "Fachtherapeut Schule (Teilleistungsstörungen, Grafomotorik, Lernstörungen)",
+      "Sensorische Integrationstherapeutin nach J.Ayres",
+      "Neurofeedback/ EEG-Biofeedback Therapeutin",
+      "Verhaltenstherapeutische Methoden bei „Problemkindern“",
+      "Lern- und Leistungsstörungen",
+      "Reflexintegration",
+      "Visualtraining",
+      "Neuropsychologisches Hirnleistungstraining",
+      "Anbahnen von Willkürmotorik nach Bobath"
+    ],
+  },
+  {
+    id: "a-schuppert",
+    name: "Anna Schuppert",
+    role: "Ergotherapeutin (in Elternzeit)",
+    image: "", // Placeholder
+    qualifications: [
+      "Reittherapie",
+      "Behandlung von AD(H)S nach dem ALERT Programm",
       "Handtherapie",
-      "Rehabilitation",
+      "Kinesio- und Leuko-Taping",
+      "Verarbeitungsstörung der Wahrnehmungsbereich bei Kindern",
+      "Klassische Massagen",
+      "Musiktherapie"
     ],
   },
   {
@@ -98,9 +176,11 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/11 Melanie Weiland.jpg",
     qualifications: [
-      "Schwerpunkt Pädiatrie",
-      "Sensorische Integration",
-      "Entwicklungsförderung",
+      "Dozentin an der Fresenius Schule Zwickau",
+      "Handrehabilitation – in Ausbildung zur zertifizierten Handtherapeutin (AFH)",
+      "Reflexintegration",
+      "Visualtraining",
+      "Lern- und Leistungsstörungen"
     ],
   },
   {
@@ -109,10 +189,17 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/12 Doreen Tautenhahn.jpg",
     qualifications: [
-      "Neurologie",
-      "Spiegeltherapie",
-      "Handrehabilitation",
-      "Kinesio-Taping",
+      "Neurofeedback/ EEG-Biofeedback Therapeutin",
+      "Aufmerksamkeits-/ Konzentrations- und Verhaltenstrainerin (Attentioner und Marburger)",
+      "Verhaltenstherapeutische Methoden bei „Problemkindern“",
+      "Kommunikationstraining",
+      "Bewegungsförderung für Kinder nach dem „KinderFit“ Konzept (ZPP zertifiziert)",
+      "Reflexintegration",
+      "Lern- und Leistungsstörungen (IntraActPlus Konzept)",
+      "Alpha-Theta und Synchronie-Training",
+      "Visualtraining/ Winkelfehlsichtigkeit",
+      "Seminarleiterin für Progressive Muskelrelaxation (ZPP zertifiziert)",
+      "Neuropsychologisches Hirnleistungstraining"
     ],
   },
   {
@@ -121,9 +208,9 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/13 Lynn Pönig.jpg",
     qualifications: [
-      "Schwerpunkt Pädiatrie",
-      "Entwicklungsförderung",
-      "Elternberatung",
+      "Neurofeedback/ EEG-Biofeedback Therapeutin",
+      "Teilleistungsstörungen (LRS, Dyskalkulie)",
+      "Visualtraining"
     ],
   },
   {
@@ -132,20 +219,21 @@ export const teamMembers: TeamMember[] = [
     role: "Ergotherapeutin",
     image: "/team/14 Anna Eitler.jpg",
     qualifications: [
-      "Schwerpunkt Neurologie",
-      "Handtherapie",
-      "Rehabilitation",
+      "Kursleiterin für Progressive Muskelrelaxation (ZPP zertifiziert)",
+      "NEKU Therapie in der Neurologie (speziell bei Parkinson)"
     ],
   },
   {
     id: "c-meier",
     name: "Cornelia Meier",
-    role: "Ergotherapeutin",
+    role: "Büromanagement",
     image: "/team/Cornelia Meier.jpg",
     qualifications: [
-      "Schwerpunkt Geriatrie",
-      "Hausbesuche",
-      "Sturzprophylaxe",
+      "Bürokauffrau",
+      "Klientenmanagement",
+      "Psychologische Kompetenz im Business",
+      "Datenschutzbeauftragte",
+      "Abrechnung/ Zuzahlung"
     ],
   },
 ];

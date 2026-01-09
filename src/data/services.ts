@@ -1,5 +1,5 @@
 import { LucideIcon } from "lucide-react"
-import { HandHeart, Brain, Home, Users, Heart, Activity, Eye, Shield, Waves, Hand, Sparkles } from "lucide-react"
+import { HandHeart, Brain, Home, Activity, Heart, Eye, Shield, Wind, Hand, Sparkles, Footprints, Info, Zap } from "lucide-react"
 
 export interface Service {
   id: string;
@@ -7,13 +7,18 @@ export interface Service {
   title: string;
   teaser: string;
   description: string;
+  longDescription?: string; // Detailed description from MDC
   details: string[]; // List of specific applications
+  benefits?: string[]; // "Folgende Ziele können erreicht werden"
+  faqs?: { question: string; answer: string }[];
   image: string; // Path to image
   tag?: string; // Optional tag for BentoCard display
   icon?: LucideIcon; // Icon for BentoCard display
+  alert?: boolean; // For "Therapy full" alerts
 }
 
 export const services: Service[] = [
+  // Standard Services (Leistungen)
   {
     id: "paediatrie",
     category: "standard",
@@ -21,13 +26,13 @@ export const services: Service[] = [
     tag: "KINDER & JUGENDLICHE",
     icon: HandHeart,
     teaser: "In der Pädiatrie werden Kinder & Jugendliche behandelt, die in ihrer Entwicklung verzögert oder behindert sind.",
-    description: "In der Ergotherapie bei Kindern werden verschiedene Bereiche behandelt, um die Entwicklung und das Wohlbefinden der Kinder zu fördern. Dazu gehören: Motorische Fähigkeiten, kognitive Fähigkeiten, soziale Fähigkeiten, Alltagsfähigkeiten und sensorische Integration. Ergotherapie kommt bei Kindern und Jugendlichen angefangen vom Kleinkindalter bis zum vollendeten 18. Lebensjahr zum Einsatz. Die Therapie wird individuell auf die Bedürfnisse des Kindes abgestimmt und kann spielerisch gestaltet werden, um die Motivation und Freude am Lernen zu fördern. Im Bereich der Pädiatrie ist die Beratung und intensive Zusammenarbeit mit den Eltern und der Einbezug der Angehörigen und Bezugspersonen (z.B. Lehrer, Erzieher andere Therapeutengruppen) in allen Fragen der Behandlung von höchster Bedeutung.",
+    description: "In der Ergotherapie bei Kindern werden verschiedene Bereiche behandelt, um die Entwicklung und das Wohlbefinden der Kinder zu fördern. Dazu gehören: Motorische Fähigkeiten, kognitive Fähigkeiten, soziale Fähigkeiten, Alltagsfähigkeiten und sensorische Integration.",
     details: [
-      "Motorische Fähigkeiten: Verbesserung der grob- und feinmotorischen Fähigkeiten, um alltägliche Aktivitäten besser bewältigen zu können",
-      "Kognitive Fähigkeiten: Unterstützung bei der Entwicklung von Konzentration, Aufmerksamkeit und Problemlösungsfähigkeiten",
-      "Soziale Fähigkeiten: Förderung der Interaktion und Kommunikation mit anderen Kindern, um soziale Kompetenzen zu stärken",
-      "Alltagsfähigkeiten: Hilfe bei der Bewältigung von alltäglichen Aufgaben, wie Anziehen, Essen oder Spielen",
-      "Sensorische Integration: Unterstützung bei der Verarbeitung von Sinneseindrücken, um ein besseres Körperbewusstsein und eine angemessene Reaktion auf Reize zu entwickeln",
+      "Motorische Fähigkeiten: Verbesserung der grob- und feinmotorischen Fähigkeiten",
+      "Kognitive Fähigkeiten: Unterstützung bei der Entwicklung von Konzentration und Aufmerksamkeit",
+      "Soziale Fähigkeiten: Förderung der Interaktion und Kommunikation",
+      "Alltagsfähigkeiten: Hilfe bei der Bewältigung von alltäglichen Aufgaben",
+      "Sensorische Integration: Unterstützung bei der Verarbeitung von Sinneseindrücken",
     ],
     image: "/Aue/Pädiatrie & Entwicklung1.webp",
   },
@@ -38,15 +43,15 @@ export const services: Service[] = [
     tag: "ERWACHSENE",
     icon: Brain,
     teaser: "In der Neurologie stehen u.a. das Wiedererlangen sowie der Erhalt der Handlungsfähigkeit im Vordergrund.",
-    description: "In der Ergotherapie in der Neurologie werden verschiedene Aspekte behandelt, um die Lebensqualität von Menschen mit neurologischen Erkrankungen zu verbessern. Dazu gehören: Motorische Fähigkeiten, kognitive Fähigkeiten, Alltagsfähigkeiten, sensomotorische Integration und emotionale Unterstützung. Die Therapie wird individuell auf die Bedürfnisse des Patienten abgestimmt und kann verschiedene Methoden und Techniken umfassen, um die bestmöglichen Fortschritte zu erzielen.",
+    description: "In der Ergotherapie in der Neurologie werden verschiedene Aspekte behandelt, um die Lebensqualität von Menschen mit neurologischen Erkrankungen zu verbessern. Die Therapie wird individuell auf die Bedürfnisse des Patienten abgestimmt.",
     details: [
-      "Motorische Fähigkeiten: Verbesserung der Beweglichkeit, Kraft und Koordination, um alltägliche Aktivitäten besser ausführen zu können",
-      "Kognitive Fähigkeiten: Unterstützung bei Gedächtnis, Aufmerksamkeit und Problemlösungsfähigkeiten, um die geistige Leistungsfähigkeit zu fördern",
-      "Alltagsfähigkeiten: Hilfe bei der Wiedererlangung von Fähigkeiten, die für die Selbstversorgung und die Teilnahme am sozialen Leben wichtig sind, wie Ankleiden, Essen oder Haushaltsführung",
-      "Sensomotorische Integration: Förderung der Wahrnehmung und Verarbeitung von Sinneseindrücken, um die Körperwahrnehmung und Reaktionsfähigkeit zu verbessern",
-      "Emotionale Unterstützung: Begleitung und Unterstützung bei der Bewältigung von emotionalen Herausforderungen, die mit neurologischen Erkrankungen einhergehen können",
+      "Motorische Fähigkeiten: Verbesserung der Beweglichkeit, Kraft und Koordination",
+      "Kognitive Fähigkeiten: Unterstützung bei Gedächtnis und Aufmerksamkeit",
+      "Alltagsfähigkeiten: Hilfe bei der Wiedererlangung von Selbstversorgung",
+      "Sensomotorische Integration: Förderung der Körperwahrnehmung",
+      "Emotionale Unterstützung: Begleitung bei der Bewältigung von Herausforderungen",
     ],
-    image: "/Aue/Neurologie & Handtherapie : Orthopädie.webp",
+    image: "/Neurologie_Psychotherapie/Neurologie4.jpeg",
   },
   {
     id: "geriatrie",
@@ -55,14 +60,13 @@ export const services: Service[] = [
     tag: "MOBILITÄT",
     icon: Home,
     teaser: "Die Geriatrie behandelt Menschen mit körperlichen & geistigen Einschränkungen aufgrund ihres Alters.",
-    description: "In der Ergotherapie in der Geriatrie werden verschiedene Aspekte behandelt, um die Lebensqualität älterer Menschen zu verbessern und ihre Selbstständigkeit zu fördern. Dazu gehören: Alltagsfähigkeiten, motorische Fähigkeiten, kognitive Fähigkeiten, soziale Interaktion, Anpassung der Umgebung und emotionale Unterstützung. Die Therapie wird individuell auf die Bedürfnisse und Ziele des älteren Menschen abgestimmt, um ein möglichst selbstbestimmtes und erfülltes Leben zu ermöglichen.",
+    description: "In der Ergotherapie in der Geriatrie werden verschiedene Aspekte behandelt, um die Lebensqualität älterer Menschen zu verbessern und ihre Selbstständigkeit zu fördern. Die Therapie wird individuell auf die Bedürfnisse abgestimmt.",
     details: [
-      "Alltagsfähigkeiten: Unterstützung bei der Wiedererlangung oder Erhaltung von Fähigkeiten, die für die Selbstversorgung wichtig sind, wie Ankleiden, Essen, Körperpflege und Haushaltsführung",
-      "Motorische Fähigkeiten: Verbesserung der Beweglichkeit, Kraft und Koordination, um Stürze zu vermeiden und die Mobilität zu fördern",
-      "Kognitive Fähigkeiten: Förderung von Gedächtnis, Aufmerksamkeit und Problemlösungsfähigkeiten, um die geistige Gesundheit und das tägliche Leben zu unterstützen",
-      "Soziale Interaktion: Unterstützung bei der Förderung sozialer Kontakte und der Teilnahme an Gemeinschaftsaktivitäten, um Isolation und Einsamkeit zu vermeiden",
-      "Anpassung der Umgebung: Beratung zur Anpassung des Wohnraums, um die Sicherheit und Zugänglichkeit zu erhöhen, beispielsweise durch Hilfsmittel oder Umgestaltungen",
-      "Emotionale Unterstützung: Begleitung bei der Bewältigung von emotionalen Herausforderungen, die mit dem Älterwerden oder gesundheitlichen Einschränkungen einhergehen können",
+      "Alltagsfähigkeiten: Unterstützung bei der Selbstversorgung",
+      "Motorische Fähigkeiten: Verbesserung der Beweglichkeit zur Sturzvermeidung",
+      "Kognitive Fähigkeiten: Förderung von Gedächtnis und Aufmerksamkeit",
+      "Soziale Interaktion: Förderung sozialer Kontakte gegen Isolation",
+      "Anpassung der Umgebung: Beratung zur Wohnraumanpassung",
     ],
     image: "/Geriatrie (Aktives Hirnleistungstraining - Feinmotorik).webp",
   },
@@ -73,15 +77,14 @@ export const services: Service[] = [
     tag: "MOBILITÄT",
     icon: Activity,
     teaser: "Patienten, die eine Störung/ Verletzung des Bewegungsapparates aufweisen, werden in der Orthopädie/ Handtherapie behandelt.",
-    description: "In der Ergotherapie bei motorischen Patienten werden verschiedene Aspekte behandelt, um die motorischen Fähigkeiten und die allgemeine Lebensqualität zu verbessern. Dazu gehören: Grobmotorik, Feinmotorik, Koordination, Krafttraining, Alltagsfähigkeiten, Schmerzlinderung und Hilfsmittelberatung. Die Therapie wird individuell auf die Bedürfnisse und Ziele des Patienten abgestimmt, um bestmögliche Fortschritte zu erzielen und die Selbstständigkeit im Alltag zu fördern.",
+    description: "In der Ergotherapie bei motorischen Patienten werden verschiedene Aspekte behandelt, um die motorischen Fähigkeiten und die allgemeine Lebensqualität zu verbessern. Dazu gehören Grobmotorik, Feinmotorik und Koordination.",
     details: [
-      "Grobmotorik: Verbesserung der großen Bewegungen, wie Gehen, Laufen, Springen und Koordination, um die Mobilität und das Gleichgewicht zu fördern",
-      "Feinmotorik: Förderung der kleinen, präzisen Bewegungen, die für alltägliche Aktivitäten wie Schreiben, Essen oder das Bedienen von Werkzeugen erforderlich sind",
-      "Koordination: Verbesserung der Hand-Augen-Koordination und der allgemeinen Körperkoordination, um die Durchführung von Aktivitäten des täglichen Lebens zu erleichtern",
-      "Krafttraining: Stärkung der Muskulatur, um die körperliche Leistungsfähigkeit zu erhöhen und die Ausdauer zu verbessern",
-      "Alltagsfähigkeiten: Unterstützung bei der Wiedererlangung oder Verbesserung von Fähigkeiten, die für die Selbstversorgung und die Teilnahme am sozialen Leben wichtig sind",
-      "Schmerzlinderung: Anwendung von Techniken zur Schmerzlinderung und zur Verbesserung des Bewegungsumfangs, um die Lebensqualität zu steigern",
-      "Hilfsmittelberatung: Unterstützung bei der Auswahl und dem Einsatz von Hilfsmitteln, die die Mobilität und Selbstständigkeit fördern können",
+      "Grobmotorik: Verbesserung der großen Bewegungen",
+      "Feinmotorik: Förderung der kleinen, präzisen Bewegungen",
+      "Koordination: Verbesserung der Hand-Augen-Koordination",
+      "Krafttraining: Stärkung der Muskulatur",
+      "Schmerzlinderung: Anwendung von Techniken zur Schmerzlinderung",
+      "Hilfsmittelberatung: Unterstützung bei der Auswahl von Hilfsmitteln",
     ],
     image: "/Aue/Neurologie & Handtherapie : Orthopädie2.webp",
   },
@@ -92,38 +95,74 @@ export const services: Service[] = [
     tag: "KOOPERATION",
     icon: Heart,
     teaser: "Patienten, die unter psychischen Symptomen leiden, werden in der Psychiatrie/Psychotherapie behandelt.",
-    description: "In der Ergotherapie bei psychisch kranken Menschen werden verschiedene Aspekte behandelt, um die psychische Gesundheit und die Lebensqualität zu verbessern. Dazu gehören: Alltagsfähigkeiten, soziale Fähigkeiten, emotionale Regulation, kognitive Fähigkeiten, Selbstwertgefühl und Motivation, kreative Ausdrucksformen und Stressbewältigung. Die Therapie wird individuell auf die Bedürfnisse und Ziele des Patienten abgestimmt, um bestmögliche Fortschritte zu erzielen und die Lebensqualität zu verbessern.",
+    description: "In der Ergotherapie bei psychisch kranken Menschen werden verschiedene Aspekte behandelt, um die psychische Gesundheit und die Lebensqualität zu verbessern. Dazu gehören Alltagsfähigkeiten, soziale Fähigkeiten und emotionale Regulation.",
     details: [
-      "Alltagsfähigkeiten: Unterstützung bei der Wiedererlangung oder Verbesserung von Fähigkeiten, die für die Selbstversorgung und die Teilnahme am sozialen Leben wichtig sind, wie Ankleiden, Essen und Haushaltsführung",
-      "Soziale Fähigkeiten: Förderung der sozialen Interaktion und Kommunikation, um Beziehungen zu stärken und Isolation zu vermeiden",
-      "Emotionale Regulation: Unterstützung bei der Entwicklung von Strategien zur Bewältigung von Emotionen, Stress und Ängsten, um die emotionale Stabilität zu fördern",
-      "Kognitive Fähigkeiten: Verbesserung von Gedächtnis, Aufmerksamkeit und Problemlösungsfähigkeiten, um die geistige Gesundheit zu unterstützen und die Teilhabe am Alltag zu erleichtern",
-      "Selbstwertgefühl und Motivation: Förderung des Selbstbewusstseins und der Motivation, um die Eigenverantwortung und das Selbstmanagement zu stärken",
-      "Kreative Ausdrucksformen: Einsatz von kreativen Therapien, wie Kunst- oder Musiktherapie, um emotionale Ausdrucksformen zu fördern und die Selbstwahrnehmung zu verbessern",
-      "Stressbewältigung: Vermittlung von Techniken zur Stressbewältigung und Entspannung, um die psychische Belastbarkeit zu erhöhen",
+      "Alltagsfähigkeiten: Unterstützung bei der Strukturierung des Alltags",
+      "Soziale Fähigkeiten: Förderung der Kommunikation",
+      "Emotionale Regulation: Strategien zur Stressbewältigung",
+      "Kognitive Fähigkeiten: Verbesserung von Konzentration",
+      "Selbstwertgefühl und Motivation: Stärkung der Eigenverantwortung",
+      "Kreative Ausdrucksformen: Kunst- oder Musiktherapie",
     ],
-    image: "/Schwarzenberg/Schwarzenberg Praxis3.webp",
+    image: "/Neurologie_Psychotherapie/Psychotherpie1.jpeg",
   },
+
+  // Special Services (Therapieangebote / Besonderes)
   {
     id: "neurofeedback",
     category: "special",
     title: "Neurofeedback (NFB)",
     icon: Brain,
     teaser: "Sanfte und schmerzfreie Therapie zur Messung und Verbesserung der Gehirnaktivität.",
-    description: "Neurofeedback ist eine sehr sanfte und schmerzfreie Therapie zur Messung und Verbesserung der Gehirnaktivität (z.B. Wahrnehmung, Denken, Aufmerksamkeit, Verhalten). Neurofeedback ist eine Methode des Biofeedbacks. Dabei werden über einen Bildschirm Körpersignale und Hirnaktivitäten an den Patienten rückgemeldet. Mit Neurofeedback soll die Selbstregulierungsfähigkeit des Gehirns verbessert werden.",
+    description: "Neurofeedback ist eine sehr sanfte und schmerzfreie Methode des Biofeedbacks zur Messung und Verbesserung der Gehirnaktivität. Dabei werden über einen Bildschirm Körpersignale und Hirnaktivitäten an den Patienten rückgemeldet. Durch dieses audiovisuelle Feedback lernt das Gehirn, seine Selbstregulierungsfähigkeit zu optimieren und seine Aktivitätsmuster nachhaltig zu verändern.",
     details: [
+      "AD(H)S",
       "Epilepsie",
       "Tinnitus",
-      "Aufmerksamkeitsdefizit-/Hyperaktivitätsstörung",
       "Lern- und Leistungsstörungen",
       "Autismus",
       "Schlaganfall",
-      "Tic-Störungen, Tourette-Syndrom",
-      "Angststörungen",
-      "Depressionen",
-      "Demenz",
-      "Migräne",
-      "Stimmungsschwankungen",
+      "Tic-Störungen / Tourette",
+      "Angststörungen / Depressionen",
+      "Migräne / Schlafstörungen",
+    ],
+    benefits: [
+      "Erhöhung der Stress-/Frustrationstoleranz",
+      "Verbesserung von Aufmerksamkeit und Konzentration",
+      "Erhöhung der Aufnahmefähigkeit",
+      "Verbesserung der Schlafsituation",
+      "Innere Blockaden identifizieren und aufbrechen",
+      "Ggf. Medikamentendosen reduzieren (in Absprache mit Arzt)",
+    ],
+    faqs: [
+      {
+        question: "Wie funktioniert das Neurofeedbacktraining?",
+        answer: "Für die Messung der Gehirnaktivität werden EEG-Elektroden am Kopf angebracht. Der Computer analysiert die Signale in Echtzeit und gibt ein audiovisuelles Feedback (z.B. in einem Film oder Spiel). Das Gehirn reagiert sofort darauf und lernt durch Belohnung, seine Aktivität zu optimieren."
+      },
+      {
+        question: "Werden die Kosten übernommen?",
+        answer: "Ja, Neurofeedback ist eine anerkannte Therapieform und wird im Rahmen einer ergotherapeutischen Behandlung (Rezept) von der Krankenkasse erstattet."
+      },
+      {
+        question: "Welcher Arzt kann verordnen?",
+        answer: "Jeder niedergelassene Arzt oder Psychotherapeut mit Kassenzulassung kann Neurofeedback im Rahmen einer ergotherapeutischen Behandlung (meist psychisch-funktionell oder sensomotorisch-perzeptiv) verordnen."
+      },
+      {
+        question: "Gibt es Nebenwirkungen?",
+        answer: "Nein, bisher sind keine bekannt. Die Behandlung ist vollkommen schmerzfrei."
+      },
+      {
+        question: "Wie viele Behandlungen sind notwendig?",
+        answer: "Normalerweise sind es 20 – 40 Sitzungen. Erste Erfolge können sich bereits nach wenigen Einheiten einstellen."
+      },
+      {
+        question: "Kann Neurofeedback Medikamente ersetzen?",
+        answer: "Es ist möglich, dass im Laufe der Behandlungsserie (20-30 Sitzungen) auf eine Medikation nach und nach verzichtet werden kann – immer in Absprache mit dem behandelnden Arzt."
+      },
+      {
+        question: "Ab welchem Alter ist Neurofeedback möglich?",
+        answer: "Gängig gilt z.Z. das Vorschulalter als Mindestalter. Ein Höchstalter gibt es nicht, auch ältere Menschen profitieren davon."
+      }
     ],
     image: "/Neurofeedback.webp",
   },
@@ -131,30 +170,54 @@ export const services: Service[] = [
     id: "bemer",
     category: "special",
     title: "BEMER Therapie",
-    icon: Activity,
+    icon: Zap,
     teaser: "Physikalische Gefäßtherapie zur Verbesserung der Mikrozirkulation.",
-    description: "Grundlage vieler chronischer Erkrankungen ist eine gestörte Durchblutung der kleinsten Gefäße, die wir auch als Endstrecke der Gefäßversorgung bezeichnen (Störung der Mikrozirkulation). Über diese kleinsten Gefäße (Kapillaren) findet der Sauerstoff- und Nährstoffaustausch mit den Zellen statt. Die BEMER Therapie kann es ermöglichen, die kleinsten Gefäße wieder zu erweitern, die Durchblutung zu fördern und damit den An- und Abtransport von Nähr- und Giftstoffen zu verbessern.",
+    description: "Die BEMER Therapie ist eine physikalische Gefäßtherapie zur Verbesserung der Mikrozirkulation. Sie stimuliert die natürliche Pumpbewegung der kleinsten Gefäße und fördert so die Durchblutung, den Nährstoffaustausch und den Abtransport von Stoffwechselprodukten. Dies kann zu mehr Antrieb, höherer Leistungsfähigkeit und schnellerer Heilung beitragen. BEMER ist keine alleinige Heilmethode, aber eine effektive unterstützende Maßnahme bei vielen chronischen Erkrankungen.",
     details: [
-      "Allgemeine Schmerzen",
-      "Asthma bronchiale",
-      "Burnout-Syndrom",
-      "Chronisches Erschöpfungssyndrom (CFS)",
-      "Depression",
+      "Allgemeine Schmerzen / Chronische Schmerzen",
       "Durchblutungsstörungen",
-      "Entzündungen",
-      "Hautkrankheiten",
+      "Entzündungen / Wundheilungsstörungen",
+      "Erschöpfung / Burnout",
       "Hypertonie (Bluthochdruck)",
-      "COVID Long/Post",
-      "Kreislaufstörungen",
-      "Insomnie (Schlafstörungen)",
-      "Rheuma",
-      "Stoffwechselstörungen",
-      "Wundheilungsstörungen",
-      "Cephalgie (Kopfschmerzen), Migräne",
-      "Muskelverspannung",
-      "Gelenkschmerzen",
-      "Neuralgien (Nervenschmerzen)",
-      "Polyneuropathien (PNP)",
+      "Schlafstörungen",
+      "Rheuma / Arthrose",
+      "Stoffwechselstörungen (Diabetes)",
+      "Polyneuropathien",
+    ],
+    benefits: [
+      "Verbesserung der Mikrozirkulation",
+      "Unterstützung der Zellfunktionen",
+      "Förderung der Selbstheilungskräfte",
+      "Mehr Antrieb und Leistungsfähigkeit",
+      "Bessere Konzentrationsfähigkeit",
+      "Linderung von Schmerzen",
+      "Schnellere Heilung von Verletzungen",
+    ],
+    faqs: [
+      {
+        question: "Wie wirkt die BEMER Therapie?",
+        answer: "BEMER-Geräte senden ein spezielles elektromagnetisches Signal, das die natürliche Pumpbewegung der Kapillaren stimuliert. Dies verbessert die Mikrozirkulation und damit die Versorgung der Zellen mit Sauerstoff."
+      },
+      {
+        question: "Wie lange dauert eine Behandlung?",
+        answer: "Die Ganzkörper-Therapie dauert normalerweise 8 Minuten. Lokal-Therapien können zwischen 8 und 20 Minuten variieren."
+      },
+      {
+        question: "Werden die Kosten übernommen?",
+        answer: "Nein, die BEMER Therapie ist eine Selbstzahlerleistung (IGeL). Je nach Aufwand liegen die Kosten zwischen 39,00 € und 69,00 €."
+      },
+      {
+        question: "Gibt es Nebenwirkungen?",
+        answer: "Nein. Seit 1998 sind keine Nebenwirkungen bekannt. Die Behandlung ist schmerzfrei."
+      },
+      {
+        question: "Kann ich BEMER mit anderen Therapien kombinieren?",
+        answer: "Ja, das ist sogar sinnvoll. Durch die durchblutungssteigernde Wirkung können andere Therapien (z.B. Akupunktur, manuelle Therapie) verstärkt werden."
+      },
+      {
+        question: "Wann darf die Therapie nicht angewendet werden?",
+        answer: "Bei immunsuppressiver Therapie nach Transplantationen oder bei aktiven medizinischen Implantaten (z.B. Herzschrittmacher, Insulinpumpen) ist die Anwendung ausgeschlossen."
+      }
     ],
     image: "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
   },
@@ -163,22 +226,41 @@ export const services: Service[] = [
     category: "special",
     title: "Visualtraining (VT)",
     icon: Eye,
-    teaser: "Individuelles, verhaltensorientiertes Sehtraining zur Verbesserung der Sehkraft und visuellen Ausdauer.",
-    description: "Visualtraining ist individuelles, verhaltensorientiertes Sehtraining zur Verbesserung der Sehkraft, der visuellen Ausdauer und damit der persönlichen Leistungsfähigkeit. Sehen ist ein Prozess, der verschiedene Wahrnehmungen miteinander verknüpft. Deshalb müssen die vier Funktionen des Sehprozesses gleichzeitig und gleich gut ablaufen: Augenmotorik, Fixation, Akkommodation und Visualisation.",
+    teaser: "Individuelles Sehtraining zur Verbesserung der Sehkraft und visuellen Ausdauer.",
+    description: "Individuelles, verhaltensorientiertes Sehtraining zur Verbesserung der Sehkraft, der visuellen Ausdauer und damit der persönlichen Leistungsfähigkeit.",
+    longDescription: "Sehen ist ein Prozess, der verschiedene Wahrnehmungen verknüpft: Augenmotorik, Fixation, Akkommodation und Visualisation. VT zielt darauf ab, visuelle Defizite durch gezielte Übungen und Wahrnehmungstraining nachhaltig zu beheben.",
     details: [
-      "Häufiges Anecken/Ungeschicklichkeit",
-      "Schwierigkeiten, die Konzentration zu halten (ADS/ADHS)",
-      "Kopfschmerzen",
-      "Den Kopf häufig schief haltend",
-      "Ein kurzer Arbeits-/bzw. Schreibabstand zwischen Auge und Heft/Arbeit",
-      "Schnelles Ermüden beim Lesen/Leseunlust",
+      "Konzentrationsprobleme (ADS/ADHS)",
+      "Lese-Rechtschreib-Schwäche / Leseunlust",
+      "Kopfschmerzen / Augenreiben",
+      "Verschwommenes oder doppeltes Sehen",
+      "Schnelles Ermüden beim Lesen",
       "Schwierigkeiten beim Textverständnis",
-      "Schwierigkeiten, das Tafelbild zu erfassen",
-      "Buchstaben dazu erfinden oder verwechseln, auch bei bekannten Wörtern",
-      "Augenreiben/Augenschmerzen",
-      "Unregelmäßiges Schriftbild",
-      "Schreiben auf der Linie fällt schwer",
-      "Doppelt Sehen/verschwommenes Sehen",
+      "Häufiges Anecken / Ungeschicklichkeit",
+    ],
+    benefits: [
+      "Verbesserung der visuellen Ausdauer",
+      "Steigerung der persönlichen Leistungsfähigkeit",
+      "Besseres Textverständnis",
+      "Reduktion von Kopfschmerzen und Ermüdung",
+    ],
+    faqs: [
+      {
+        question: "Muss eine Voruntersuchung erfolgen?",
+        answer: "Ja, unbedingt. Eine Abklärung beim Augenarzt (organisch) und eine umfassende Diagnostik bei einem Optometristen sind notwendig. Der Optometrist erstellt den Trainingsplan."
+      },
+      {
+        question: "Werden die Kosten übernommen?",
+        answer: "Nein, VT ist eine Selbstzahlerleistung. Die augenärztliche Voruntersuchung zahlt die Kasse, die optometrische Analyse und das Training selbst in der Regel nicht."
+      },
+      {
+        question: "Wie wird das VT durchgeführt?",
+        answer: "Das Training findet in der Praxis (ca. 30 Min.) und zu Hause (täglich einige Minuten) statt. Es kommen individuelle Sehübungen und PC-Anwendungen (z.B. EYEBAB) zum Einsatz."
+      },
+      {
+        question: "Wie lange dauert es, bis sich ein Erfolg einstellt?",
+        answer: "Das hängt vom Beschwerdebild und dem Übungsfleiß ab und kann nicht pauschalisiert werden. Eine Erfolgskontrolle erfolgt halbjährlich."
+      }
     ],
     image: "/Aue/Visualtraining (VT).webp",
   },
@@ -188,25 +270,37 @@ export const services: Service[] = [
     title: "Sturzprävention",
     icon: Shield,
     teaser: "Maßnahmen und Strategien zur Verhinderung von Stürzen, insbesondere bei älteren Menschen.",
-    description: "Sturzprävention bezieht sich auf Maßnahmen und Strategien, die darauf abzielen, Stürze zu verhindern, insbesondere bei älteren Menschen oder Personen mit erhöhtem Risiko. Ziel der Sturzprävention ist es, die Sicherheit und Lebensqualität der Betroffenen zu erhöhen und Verletzungen zu vermeiden.",
+    description: "Sturzprävention umfasst Maßnahmen und Strategien, die darauf abzielen, Stürze zu verhindern, insbesondere bei älteren Menschen oder Personen mit erhöhtem Risiko. Ziel ist es, die Sicherheit und Lebensqualität zu erhöhen und Verletzungen zu vermeiden. Wir trainieren gezielt Kraft, Balance und Reaktionsfähigkeit und beraten auch zur Wohnraumanpassung.",
     details: [
-      "Ältere Menschen, da sie ein höheres Risiko für Stürze haben",
-      "Neurologische Erkrankungen, wie Parkinson, Schlaganfall oder Multiple Sklerose",
-      "Kardiovaskuläre Erkrankungen wie Herzprobleme oder Blutdruckschwankungen",
-      "Muskel- und Skeletterkrankungen, wie Arthritis oder Osteoporose",
-      "Sehstörungen: Probleme mit dem Sehvermögen",
-      "Medikamenteneinnahme: Bestimmte Medikamente können Schwindel oder Müdigkeit verursachen",
-      "Kognitive Beeinträchtigungen wie Demenz oder andere kognitive Störungen",
+      "Ältere Menschen mit erhöhtem Sturzrisiko",
+      "Neurologische Erkrankungen (Parkinson, Schlaganfall, MS)",
+      "Muskel- und Skeletterkrankungen (Arthrose, Osteoporose)",
+      "Gangunsicherheit",
+      "Kognitive Beeinträchtigungen",
+    ],
+    benefits: [
+      "Verbesserung von Gleichgewicht und Koordination",
+      "Verbesserung der Reaktionsfähigkeit",
+      "Stärkung der Muskulatur und Kraft",
+      "Bessere Trittfestigkeit",
+      "Erhöhung der Mobilität und Selbstständigkeit",
+      "Verbesserte Lebensqualität",
+    ],
+    faqs: [
+      {
+        question: "Wie funktioniert Sturzprävention?",
+        answer: "Dazu gehören körperliche Übungen zur Verbesserung der Balance und Kraft, die Anpassung der Wohnumgebung (Stolperfallen beseitigen) sowie die Schulung in sicherem Gehen und Bewegen."
+      }
     ],
     image: "/Sturzprävention.webp",
   },
   {
     id: "pmr",
     category: "special",
-    title: "Progressive Muskelrelaxation nach Jacobson (PMR)",
-    icon: Waves,
-    teaser: "Entspannungstechnik zur Reduktion von Stress und Angst durch systematische Muskelanspannung und -entspannung.",
-    description: "Bei der PMR handelt sich um eine Entspannungstechnik, die von Dr. Edmund Jacobson in den 1920er Jahren entwickelt wurde. Die Methode basiert auf der Idee, dass körperliche Entspannung zu einer Reduktion von Stress und Angst führen kann.",
+    title: "Progressive Muskelrelaxation (PMR)",
+    icon: Wind,
+    teaser: "Entspannungstechnik zur Reduktion von Stress und Angst.",
+    description: "Die Progressive Muskelrelaxation (PMR) nach Jacobson ist eine Entspannungstechnik zur Reduktion von Stress und Angst. Die Methode basiert auf der Idee, dass körperliche Entspannung auch zu psychischer Entspannung führt. Dabei werden verschiedene Muskelgruppen systematisch angespannt und wieder entspannt, um ein besseres Körperbewusstsein zu fördern und nachhaltig Stress abzubauen.",
     details: [
       "Stress und Angststörungen",
       "Depressionen",
@@ -215,23 +309,61 @@ export const services: Service[] = [
       "Herz-Kreislauf-Erkrankungen",
       "Verdauungsstörungen",
     ],
+    benefits: [
+      "Stressabbau und Linderung von Angst",
+      "Steigerung des allgemeinen Wohlbefindens",
+      "Verbesserung der Schlafqualität",
+      "Schmerzlinderung",
+      "Senkung des Blutdrucks",
+    ],
+    faqs: [
+      {
+        question: "Wie funktioniert PMR?",
+        answer: "Muskelgruppen werden in einer bestimmten Reihenfolge bewusst angespannt und entspannt. Dies fördert die Körperwahrnehmung und die Fähigkeit, selbstständig in einen Entspannungszustand zu wechseln."
+      },
+      {
+        question: "Werden die Kosten übernommen?",
+        answer: "Im Rahmen einer ergotherapeutischen Behandlung (Rezept) ja. Ohne Rezept kann PMR als Selbstzahlerleistung oder im Rahmen von zertifizierten Gesundheitskursen (ggf. mit Kassenzuschuss) besucht werden."
+      },
+      {
+        question: "Wie lange dauert eine Sitzung?",
+        answer: "Eine Sitzung dauert ca. 60 Minuten. Die Übungen sind vollkommen schmerzfrei."
+      },
+      {
+        question: "Ab welchem Alter ist PMR möglich?",
+        answer: "Gängig gilt das Grundschulalter als Mindestalter. Ein Höchstalter gibt es nicht."
+      }
+    ],
     image: "/Lösnitz2/BEMER Therapie : Progressive Muskelrelaxation (PMR.webp",
   },
   {
     id: "linkshaenderberatung",
     category: "special",
     title: "Linkshänderberatung",
-    icon: Hand,
-    teaser: "Spezifische Beratung für Linkshänder, um sich in einer rechtshändigen Welt besser zurechtzufinden.",
-    description: "Bei einer Linkshänderberatung werden spezifische Bedürfnisse und Herausforderungen von Linkshändern berücksichtigt, um ihnen zu helfen, sich in einer rechtshändigen Welt besser zurechtzufinden.",
+    icon: Hand, // Using Hand or Info
+    teaser: "Spezifische Beratung für Linkshänder.",
+    description: "Unsere Linkshänderberatung bietet spezifische Unterstützung, damit sich Linkshänder in einer rechtshändigen Welt ergonomisch und komfortabel zurechtfinden. Das Angebot umfasst die Analyse der Händigkeit, Empfehlungen für geeignete Hilfsmittel sowie spezielles Schreibtraining zur Verbesserung der Körperhaltung und Vermeidung von Fehlhaltungen.",
     details: [
-      "Erkennung der Händigkeit: Die Beratung beginnt mit einer Analyse bzw. Testungen der Händigkeit",
-      "Hilfsmittel und Materialien: Empfehlung geeigneter Schreibutensilien, Scheren, Computerzubehör",
-      "Schreibtechniken: Techniken und Tipps zur Verbesserung der Schreibhaltung bzw. ein Schreibtraining",
-      "Anpassung der Umgebung: Empfehlungen zur Anpassung des Arbeitsplatzes oder des Schreibtischs",
-      "Aufklärung: Informationen über die Unterschiede zwischen Links- und Rechtshändern",
-      "Unterstützung in der Schule: Beratung für Lehrer und Erzieher",
-      "Psychologische Unterstützung: Beratung bei möglichen Frustrationen oder Herausforderungen",
+      "Erkennung der Händigkeit (Testung)",
+      "Hilfsmittel und Materialien (Scheren, Stifte)",
+      "Schreibtechniken und Schreibtraining",
+      "Arbeitsplatzanpassung (Schule/Büro)",
+      "Aufklärung für Eltern, Lehrer und Erzieher",
+      "Psychologische Unterstützung bei Frustration",
+    ],
+    faqs: [
+      {
+        question: "Werden die Kosten übernommen?",
+        answer: "Ja, wenn eine ergotherapeutische Verordnung (motorisch-funktionell) vorliegt. Ohne Rezept ist es eine Selbstzahlerleistung (IGeL)."
+      },
+      {
+        question: "Muss die Beratung speziell auf dem Rezept stehen?",
+        answer: "Nein, eine normale Verordnung für Ergotherapie (motorisch-funktionell) reicht aus."
+      },
+      {
+        question: "Was kostet eine Beratung ohne Rezept?",
+        answer: "Der Satz für eine Beratung/Testung (1h) liegt bei ca. 79,00 €."
+      }
     ],
     image: "/Schwarzenberg/Linkshänderberatung.webp",
   },
@@ -239,10 +371,21 @@ export const services: Service[] = [
     id: "therapeutisches-reiten",
     category: "special",
     title: "Therapeutisches Reiten",
-    icon: Sparkles,
+    icon: Footprints, // Using Footprints as "Horse" proxy
     teaser: "Momentan sind alle vorhandenen Therapieplätze belegt.",
-    description: "Momentan sind leider alle vorhandenen Therapieplätze belegt. Aus personellen Gründen ist z.Z. eine Aufnahme auf die Warteliste nicht möglich. Bitte sehen Sie von Nachfragen ab. Wenn sich die Situation ändert, wird dies auf dieser Seite aktualisiert werden.",
-    details: [],
+    description: "Momentan sind leider alle vorhandenen Therapieplätze belegt. Aus personellen Gründen ist z.Z. eine Aufnahme auf die Warteliste nicht möglich. Die Arbeit mit dem Pferd fördert Motorik, Wahrnehmung und psychische Entwicklung ganzheitlich. Leider haben wir aktuell keine Kapazitäten.",
+    details: [
+      "Ganzheitliche Förderung",
+      "Motorik & Wahrnehmung",
+      "Psychische Stabilität",
+    ],
+    alert: true,
+    faqs: [
+      {
+        question: "Gibt es freie Plätze?",
+        answer: "Nein, momentan sind alle Plätze belegt und wir können keine neuen Patienten auf die Warteliste aufnehmen. Bitte sehen Sie von Nachfragen ab."
+      }
+    ],
     image: "/Aue/reiten.webp",
   },
 ];

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { BackToTop } from "@/components/ui/BackToTop";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,6 +42,7 @@ export default function RootLayout({
         <Header />
         <main id="main-content" className="pt-20 pb-24" tabIndex={-1}>{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );

@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle, SheetDescrip
 
 const navItems = [
   { label: "Start", href: "/" },
+  { label: "FAQ", href: "/faq" },
   { label: "Praxis", href: "/praxis" },
   { label: "Leistungen", href: "/leistungen" },
   { label: "Therapieangebote", href: "/therapieangebote" },
@@ -28,18 +29,18 @@ export function Header() {
           className="group flex items-center gap-3 rounded-full pr-3 transition hover:bg-primary/8"
           aria-label="Zur Startseite Ergotherapie Voigt"
         >
-          <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10">
+          <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl p-2.5 lg:h-20 lg:w-20 lg:p-3">
             <img
               src="/logo.png"
               alt="Ergotherapie Anne-Karen Voigt Logo"
-              className="h-10 w-10 object-contain transition duration-200 group-hover:scale-105 lg:h-12 lg:w-12"
+              className="h-full w-full object-contain transition duration-200 group-hover:scale-105"
             />
           </div>
           <div className="leading-tight">
-            <div className="font-bold tracking-tight text-foreground" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.125rem)' }}>
+            <div className="font-bold tracking-tight text-foreground" style={{ fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)' }}>
               Ergotherapie Voigt
             </div>
-            <div className="font-semibold uppercase tracking-[0.28em] text-primary" style={{ fontSize: 'clamp(0.6875rem, 1.5vw, 0.6875rem)' }}>
+            <div className="font-semibold uppercase tracking-[0.28em] text-primary" style={{ fontSize: 'clamp(0.75rem, 1.5vw, 0.875rem)' }}>
               Praxen im Erzgebirge
             </div>
           </div>

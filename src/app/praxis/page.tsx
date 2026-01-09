@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { MapPin, Phone, Mail, CheckCircle2, ZoomIn, ExternalLink, Calendar } from "lucide-react"
+import { MapPin, Phone, Mail, CheckCircle2, ZoomIn, ExternalLink, Calendar, ArrowUpRight } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
@@ -13,11 +13,23 @@ import { Modal } from "@/components/ui/Modal"
 import { locations } from "@/data/locations"
 import { getLocationImages } from "@/lib/locationImages"
 
-// Google Business Profile URLs (Place IDs müssen noch eingefügt werden)
-const googleBusinessProfiles: Record<string, string> = {
-  aue: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.1234567890!2d12.1234567!3d50.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDA3JzI0LjQiTiAxMsKwMDcnMjQuNCJF!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde",
-  schwarzenberg: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.1234567890!2d12.1234567!3d50.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDA3JzI0LjQiTiAxMsKwMDcnMjQuNCJF!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde",
-  loessnitz: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.1234567890!2d12.1234567!3d50.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDA3JzI0LjQiTiAxMsKwMDcnMjQuNCJF!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde",
+// Google Business Profile URLs (Embeds & Profile Links)
+const googleBusinessProfiles: Record<string, { embed: string, google: string, apple: string }> = {
+  aue: {
+    embed: "https://maps.google.com/maps?q=Altmarkt+5,+08280+Aue-Bad+Schlema&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    google: "https://www.google.com/maps/search/?api=1&query=Ergotherapie+Voigt+Altmarkt+5+08280+Aue-Bad+Schlema",
+    apple: "https://maps.apple.com/?q=Ergotherapie+Voigt&address=Altmarkt%205,08280,Aue-Bad%20Schlema"
+  },
+  schwarzenberg: {
+    embed: "https://maps.google.com/maps?q=Robert-Koch-Stra%C3%9Fe+16a,+08340+Schwarzenberg&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    google: "https://www.google.com/maps/search/?api=1&query=Ergotherapie+Voigt+Robert-Koch-Stra%C3%9Fe+16a+08340+Schwarzenberg",
+    apple: "https://maps.apple.com/?q=Ergotherapie+Voigt&address=Robert-Koch-Stra%C3%9Fe%2016a,08340,Schwarzenberg"
+  },
+  loessnitz: {
+    embed: "https://maps.google.com/maps?q=Heinestra%C3%9Fe+1,+08294+L%C3%B6%C3%9Fnitz&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    google: "https://www.google.com/maps/search/?api=1&query=Ergotherapie+Voigt+Heinestra%C3%9Fe+1+08294+L%C3%B6%C3%9Fnitz",
+    apple: "https://maps.apple.com/?q=Ergotherapie+Voigt&address=Heinestra%C3%9Fe%201,08294,L%C3%B6%C3%9Fnitz"
+  },
 }
 
 // Separate component for useSearchParams to wrap in Suspense
@@ -26,6 +38,7 @@ function PraxisContent() {
   const router = useRouter()
   const [galleryLocationId, setGalleryLocationId] = useState<string | null>(null)
   const [clickedLocationId, setClickedLocationId] = useState<string | null>(null)
+  const [isMapMenuOpen, setIsMapMenuOpen] = useState(false)
 
   // Öffne Modal automatisch wenn standort Query-Parameter vorhanden
   useEffect(() => {
@@ -37,8 +50,14 @@ function PraxisContent() {
 
   const handleCloseModal = () => {
     setClickedLocationId(null)
-    // Entferne Query-Parameter aus URL
-    router.push("/praxis", { scroll: false })
+    setIsMapMenuOpen(false)
+    // Wenn wir von einer anderen Seite kamen (Deep Link), gehen wir zurück
+    // Ansonsten (interne Navigation) bleiben wir auf der Seite und entfernen nur den Parameter
+    if (searchParams.get("standort")) {
+      router.back()
+    } else {
+      router.push("/praxis", { scroll: false })
+    }
   }
 
   return (
@@ -46,6 +65,10 @@ function PraxisContent() {
       {/* Header */}
       <section className="relative overflow-hidden bg-gradient-to-br from-secondary/80 via-white to-background pb-12 pt-12 md:pb-16">
         <div className="pointer-events-none absolute inset-0 orb-sheen" />
+        {/* Watermark Logo Twist (Top Right, -12deg) */}
+        <div className="pointer-events-none absolute -top-24 -right-24 z-0 opacity-[0.04] -rotate-12 mix-blend-multiply select-none hidden lg:block">
+          <img src="/logo.png" alt="" className="w-[600px] h-[600px] object-contain" />
+        </div>
         <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
             Unsere Praxen
@@ -103,9 +126,9 @@ function PraxisContent() {
                       {/* Click Hint - Mobile always visible, Desktop on hover */}
                       {locationImages.length > 1 && (
                         <div className="absolute inset-0 flex items-center justify-center opacity-100 md:opacity-0 md:group-hover/image:opacity-100 transition-opacity duration-300 pointer-events-none">
-                          <div className="bg-white/90 backdrop-blur rounded-full px-3 py-1.5 text-xs font-medium text-slate-700 shadow-lg flex items-center gap-1.5">
-                            <ZoomIn className="w-3 h-3" />
-                            Klick für öffnen
+                          <div className="flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-primary shadow-2xl backdrop-blur-sm">
+                            <ZoomIn className="h-4 w-4" />
+                            Bildergalerie
                           </div>
                         </div>
                       )}
@@ -121,7 +144,31 @@ function PraxisContent() {
                   </div>
 
                   {/* Kontakt & CTA Sektion */}
-                  <div className="flex flex-col gap-4 p-6 justify-start">
+                  <div className="relative flex flex-col gap-4 p-6 justify-start">
+                    {/* Partner Button (Absolute Top Right of Content) */}
+                    {location.extraInfo && (
+                      <a
+                        href={location.extraInfo.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute right-6 top-6 z-20 flex h-12 w-12 items-center justify-center rounded-xl border border-slate-100 bg-white p-1 shadow-sm transition-transform hover:scale-105 hover:shadow-md group/partner"
+                        title={location.extraInfo.title}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="relative h-full w-full overflow-hidden rounded-lg">
+                          {location.extraInfo.logo && (
+                            <Image
+                              src={location.extraInfo.logo}
+                              alt="Partner Logo"
+                              fill
+                              className="object-contain p-0.5"
+                            />
+                          )}
+                        </div>
+                        <ArrowUpRight className="absolute right-0.5 top-0.5 h-3 w-3 text-slate-400 transition-colors group-hover/partner:text-primary" />
+                      </a>
+                    )}
+
                     {/* Titel */}
                     <div>
                       <h3 className="font-bold text-slate-950" style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.5rem)' }}>
@@ -188,255 +235,220 @@ function PraxisContent() {
           <Modal
             isOpen={clickedLocationId !== null}
             onClose={handleCloseModal}
-            maxWidth="6xl"
+            maxWidth="4xl"
           >
-            <div className="max-h-[90vh] overflow-y-auto p-6">
-              <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-                {/* Linke Spalte: Bild + Google Maps */}
-                <div className="space-y-6">
-                  {/* Bild */}
-                  <div className="relative h-[350px] w-full rounded-2xl overflow-hidden shadow-xl">
-                    <div
-                      className="relative h-full w-full cursor-pointer group/image"
-                      onClick={() => setGalleryLocationId(location.id)}
-                    >
-                      <Image
-                        src={mainImage}
-                        alt={location.name}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover/image:scale-110"
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                      
-                      {/* Click Hint - Mobile always visible, Desktop on hover */}
-                      {locationImages.length > 1 && (
-                        <div className="absolute inset-0 flex items-center justify-center opacity-100 md:opacity-0 md:group-hover/image:opacity-100 transition-opacity duration-300 pointer-events-none">
-                          <div className="bg-white/90 backdrop-blur rounded-full px-3 py-1.5 text-xs font-medium text-slate-700 shadow-lg flex items-center gap-1.5">
-                            <ZoomIn className="w-3 h-3" />
-                            Klick für öffnen
-                          </div>
-                        </div>
-                      )}
+            <div className="flex flex-col md:flex-row h-full md:h-auto md:min-h-[500px] overflow-hidden bg-white">
+              {/* Left Column: Visuals (Image + Map) */}
+              <div className="w-full md:w-[45%] flex flex-col bg-slate-100 border-r border-slate-100">
+                {/* Main Image */}
+                <div 
+                  className="relative aspect-video w-full shrink-0 cursor-pointer group/image"
+                  onClick={() => setGalleryLocationId(location.id)}
+                >
+                  <Image
+                    src={mainImage}
+                    alt={location.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover/image:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
+                  
+                  {/* Gallery Badge */}
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-bold text-slate-900 shadow-lg backdrop-blur-sm transition-transform group-hover/image:scale-105">
+                      <ZoomIn className="h-3.5 w-3.5 text-primary" />
+                      <span>Galerie öffnen</span>
+                    </div>
+                    {locationImages.length > 1 && (
+                      <div className="rounded-full bg-black/50 px-2.5 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+                         1 / {locationImages.length}
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-                      {/* Bildzähler */}
-                      {locationImages.length > 1 && (
-                        <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur rounded-full px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-lg">
-                          1 / {locationImages.length}
+                {/* Integrated Map */}
+                <div className="flex-1 relative bg-slate-200 min-h-[200px]">
+                  <iframe
+                    src={googleBusinessProfiles[location.id]?.embed || googleBusinessProfiles.aue.embed}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 w-full h-full grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                    title={`Karte von ${location.name}`}
+                  />
+                  
+                  {/* Map Overlay Menu */}
+                  <div className="absolute bottom-3 right-3 z-10">
+                    {!isMapMenuOpen ? (
+                      <button 
+                        onClick={() => setIsMapMenuOpen(true)}
+                        className="flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-md backdrop-blur hover:bg-white hover:text-primary transition-colors"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        In Maps öffnen
+                      </button>
+                    ) : (
+                      <div className="flex flex-col gap-1.5 rounded-xl bg-white p-2 shadow-xl ring-1 ring-slate-100 animate-in slide-in-from-bottom-2 duration-200">
+                        <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                          Öffnen mit
                         </div>
-                      )}
+                        <a 
+                          href={googleBusinessProfiles[location.id]?.google || googleBusinessProfiles.aue.google}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-[#4285F4] transition-colors"
+                        >
+                          <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                          Google Maps
+                        </a>
+                        <a 
+                          href={googleBusinessProfiles[location.id]?.apple || googleBusinessProfiles.aue.apple}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                        >
+                          <svg viewBox="0 0 384 512" className="h-4 w-4 fill-current" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z"/></svg>
+                          Apple Maps
+                        </a>
+                        <button 
+                          onClick={() => setIsMapMenuOpen(false)}
+                          className="mt-1 w-full border-t border-slate-100 py-2 text-[10px] font-medium text-slate-400 hover:text-slate-600"
+                        >
+                          Abbrechen
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Information */}
+              <div className="flex-1 flex flex-col min-w-0">
+                <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8">
+                  {/* Header */}
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-slate-950 leading-tight">
+                      {location.name}
+                    </h2>
+                    <div className="mt-2 flex items-center gap-2 text-slate-500 font-medium">
+                      <MapPin className="h-4.5 w-4.5 text-primary shrink-0" />
+                      <span>{location.address.street}, {location.address.zip} {location.address.city}</span>
                     </div>
                   </div>
 
-                  {/* Google Business Profile */}
-                  <Card className="border-0 shadow-xl shadow-slate-200/50 overflow-hidden">
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-base flex items-center gap-2">
-                        <ExternalLink className="w-4 h-4 text-primary" />
-                        Google Bewertungen & Profil
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-0">
-                      <div className="relative w-full h-64">
-                        <iframe
-                          src={googleBusinessProfiles[location.id] || googleBusinessProfiles.aue}
-                          width="100%"
-                          height="100%"
-                          style={{ border: 0 }}
-                          allowFullScreen
-                          loading="lazy"
-                          referrerPolicy="no-referrer-when-downgrade"
-                          className="rounded-b-2xl"
-                          title={`Google Business Profile - ${location.name}`}
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* Rechte Spalte: Kontakt + Features */}
-                <div className="space-y-4">
-                  {/* Kontaktinformationen */}
-                  <Card className="border-0 shadow-xl shadow-slate-200/50">
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-xl text-slate-900">{location.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="flex items-start gap-3">
-                        <MapPin className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                        <div>
-                          <p className="font-medium text-slate-900">{location.address.street}</p>
-                          <p className="text-slate-600">
-                            {location.address.zip} {location.address.city}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <Phone className="w-5 h-5 text-primary shrink-0" />
-                        <a
-                          href={`tel:${location.phone.replace(/\s/g, "")}`}
-                          className="text-slate-700 hover:text-primary transition-colors"
-                        >
-                          {location.phone}
-                        </a>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <Mail className="w-5 h-5 text-primary shrink-0" />
-                        <a
-                          href={`mailto:${location.email}`}
-                          className="text-slate-700 hover:text-primary transition-colors break-all"
-                        >
-                          {location.email}
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* CTA Buttons */}
-                  <div className="flex flex-col gap-2">
-                    <Button
-                      asChild
-                      size="default"
-                      className="w-full rounded-full bg-primary hover:bg-primary/90 text-white shadow-lg font-bold"
+                  {/* Contact Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <a 
+                      href={`tel:${location.phone.replace(/\s/g, "")}`}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-primary/20 hover:bg-slate-100 transition-all group"
                     >
-                      <Link href={`/praxis?standort=${location.id}`}>
-                        <Calendar className="w-4 h-4 mr-2" />
-                        Termin anfragen
-                      </Link>
-                    </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="default"
-                      className="w-full rounded-full border-primary text-primary hover:bg-primary/10 font-bold"
+                      <div className="h-10 w-10 rounded-full bg-white shadow-sm flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <Phone className="h-5 w-5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Telefon</p>
+                        <p className="font-semibold text-slate-900 truncate">{location.phone}</p>
+                      </div>
+                    </a>
+
+                    <a 
+                      href={`mailto:${location.email}`}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 hover:border-primary/20 hover:bg-slate-100 transition-all group"
                     >
-                      <Link href={`/praxis?standort=${location.id}`}>
-                        Kontakt
-                      </Link>
-                    </Button>
+                      <div className="h-10 w-10 rounded-full bg-white shadow-sm flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <Mail className="h-5 w-5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Email</p>
+                        <p className="font-semibold text-slate-900 truncate">{location.email}</p>
+                      </div>
+                    </a>
                   </div>
 
-                  {/* Features Checkliste */}
+                  {/* Google & Partner Integration */}
+                  <div className="rounded-2xl border border-slate-100 bg-slate-50/50 p-5">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="font-bold text-slate-900 text-sm">Online & Partner</h3>
+                        <div className="flex gap-0.5">
+                            {[1,2,3,4,5].map(i => (
+                                <div key={i} className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                            ))}
+                        </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {/* Google Review Button */}
+                        <a 
+                            href={googleBusinessProfiles[location.id]?.google || googleBusinessProfiles.aue.google}
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 p-2.5 rounded-xl bg-white shadow-sm border border-slate-200/60 hover:border-blue-200 hover:shadow-md transition-all group"
+                        >
+                            <div className="h-9 w-9 shrink-0 rounded-full bg-[#4285F4]/10 flex items-center justify-center text-[#4285F4]">
+                                <span className="font-bold text-lg">G</span>
+                            </div>
+                            <div className="text-left">
+                                <p className="text-xs font-bold text-slate-900 group-hover:text-[#4285F4] transition-colors">Jetzt bewerten</p>
+                                <p className="text-[10px] text-slate-500">Google Profil</p>
+                            </div>
+                            <ExternalLink className="ml-auto h-3 w-3 text-slate-300 group-hover:text-[#4285F4]" />
+                        </a>
+
+                        {/* Partner Link (Aue Only) */}
+                        {location.extraInfo && (
+                            <a 
+                                href={location.extraInfo.link}
+                                target="_blank"
+                                rel="noopener noreferrer" 
+                                className="flex items-center gap-3 p-2.5 rounded-xl bg-white shadow-sm border border-slate-200/60 hover:border-pink-200 hover:shadow-md transition-all group"
+                            >
+                                <div className="h-9 w-9 shrink-0 rounded-full overflow-hidden border border-slate-100 relative">
+                                    {location.extraInfo.logo && (
+                                        <Image src={location.extraInfo.logo} alt="Partner" fill className="object-contain p-0.5" />
+                                    )}
+                                </div>
+                                <div className="text-left min-w-0">
+                                    <p className="text-xs font-bold text-slate-900 truncate group-hover:text-pink-500 transition-colors">{location.extraInfo.title}</p>
+                                    <p className="text-[10px] text-slate-500">Partner ansehen</p>
+                                </div>
+                                <ExternalLink className="ml-auto h-3 w-3 text-slate-300 group-hover:text-pink-500" />
+                            </a>
+                        )}
+                    </div>
+                  </div>
+
+                  {/* Features (Compact) */}
                   {location.features && (
-                    <Card className="border-0 shadow-xl shadow-slate-200/50">
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-lg text-slate-900">Ausstattung & Services</CardTitle>
-                      </CardHeader>
-                      <CardContent>
+                    <div className="pt-2">
                         <Accordion type="single" collapsible className="w-full">
-                        {location.features.accessibility && (
-                          <AccordionItem value="accessibility">
-                            <AccordionTrigger className="text-slate-700">
-                              Barrierefreiheit
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <ul className="space-y-2">
-                                {location.features.accessibility.map((feature, idx) => (
-                                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
-                                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                                    <span>{feature}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </AccordionContent>
-                          </AccordionItem>
-                        )}
-
-                        {location.features.service && (
-                          <AccordionItem value="service">
-                            <AccordionTrigger className="text-slate-700">
-                              Service & Leistungen
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <ul className="space-y-2">
-                                {location.features.service.map((feature, idx) => (
-                                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
-                                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                                    <span>{feature}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </AccordionContent>
-                          </AccordionItem>
-                        )}
-
-                        {location.features.amenities && (
-                          <AccordionItem value="amenities">
-                            <AccordionTrigger className="text-slate-700">
-                              Ausstattung
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <ul className="space-y-2">
-                                {location.features.amenities.map((feature, idx) => (
-                                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
-                                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                                    <span>{feature}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </AccordionContent>
-                          </AccordionItem>
-                        )}
-
-                        {location.features.audience && (
-                          <AccordionItem value="audience">
-                            <AccordionTrigger className="text-slate-700">
-                              Publikum
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <ul className="space-y-2">
-                                {location.features.audience.map((feature, idx) => (
-                                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
-                                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                                    <span>{feature}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </AccordionContent>
-                          </AccordionItem>
-                        )}
-
-                        {location.features.parking && (
-                          <AccordionItem value="parking">
-                            <AccordionTrigger className="text-slate-700">
-                              Parkplätze
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <ul className="space-y-2">
-                                {location.features.parking.map((feature, idx) => (
-                                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
-                                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                                    <span>{feature}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </AccordionContent>
-                          </AccordionItem>
-                        )}
-
-                        {location.features.payment && (
-                          <AccordionItem value="payment">
-                            <AccordionTrigger className="text-slate-700">
-                              Zahlungsarten
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <ul className="space-y-2">
-                                {location.features.payment.map((feature, idx) => (
-                                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-600">
-                                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                                    <span>{feature}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </AccordionContent>
-                          </AccordionItem>
-                        )}
+                            <AccordionItem value="services" className="border-b-0">
+                                <AccordionTrigger className="py-2 text-sm font-semibold text-slate-600 hover:text-primary hover:no-underline">
+                                    Ausstattung & Services anzeigen
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="grid grid-cols-2 gap-2 pt-2">
+                                        {location.features.accessibility && (
+                                            <div className="text-xs text-slate-600 flex items-center gap-2">
+                                                <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                                                Barrierefrei
+                                            </div>
+                                        )}
+                                        {location.features.parking && (
+                                            <div className="text-xs text-slate-600 flex items-center gap-2">
+                                                <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                                                Parkplätze
+                                            </div>
+                                        )}
+                                        {/* More items implied/simplified for compact view */}
+                                    </div>
+                                </AccordionContent>
+                            </AccordionItem>
                         </Accordion>
-                      </CardContent>
-                    </Card>
+                    </div>
                   )}
                 </div>
               </div>

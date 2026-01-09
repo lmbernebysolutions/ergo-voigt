@@ -11,9 +11,7 @@ export const serviceImageGalleries: Record<string, string[]> = {
     "/Schwarzenberg/Pädiatrie & Entwicklung (Kinder & Jugendliche)5.webp",
   ],
   neurologie: [
-    "/Aue/Neurologie & Handtherapie : Orthopädie.webp",
-    "/Aue/Neurologie & Handtherapie : Orthopädie2.webp",
-    "/Aue/Neurologie & Handtherapie : Orthopädie3.webp",
+    "/Neurologie_Psychotherapie/Neurologie4.jpeg",
   ],
   geriatrie: [
     "/Geriatrie (Aktives Hirnleistungstraining - Feinmotorik).webp",
@@ -24,7 +22,9 @@ export const serviceImageGalleries: Record<string, string[]> = {
     "/Aue/Neurologie & Handtherapie : Orthopädie3.webp",
   ],
   psychiatrie: [
-    // Keine spezifischen Psychiatrie-Bilder vorhanden, nur Hauptbild wird verwendet
+    "/Neurologie_Psychotherapie/Psychotherpie1.jpeg",
+    "/Neurologie_Psychotherapie/Psychotherapie2.jpeg",
+    "/Neurologie_Psychotherapie/Psychotherapie3.jpeg",
   ],
   // Spezielle Leistungen
   neurofeedback: [

@@ -7,12 +7,13 @@ import { SafeImage } from "./SafeImage"
 
 interface ImageGalleryProps {
   images: string[]
+  imageTitles?: string[]
   initialIndex?: number
   title?: string
   onClose: () => void
 }
 
-export function ImageGallery({ images, initialIndex = 0, title, onClose }: ImageGalleryProps) {
+export function ImageGallery({ images, imageTitles, initialIndex = 0, title, onClose }: ImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const [isZoomed, setIsZoomed] = useState(false)
   const imageRef = useRef<HTMLDivElement>(null)
@@ -68,6 +69,13 @@ export function ImageGallery({ images, initialIndex = 0, title, onClose }: Image
         className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm"
         onClick={onClose}
       >
+        {/* Title */}
+        {(imageTitles?.[currentIndex] || title) && (
+          <div className="absolute top-4 left-4 z-50 px-4 py-2 bg-black/40 backdrop-blur-md rounded-xl text-white font-bold shadow-lg pointer-events-none">
+            {imageTitles?.[currentIndex] || title}
+          </div>
+        )}
+
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -148,7 +156,10 @@ export function ImageGallery({ images, initialIndex = 0, title, onClose }: Image
 
         {/* Thumbnail Navigation (Desktop) */}
         {images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex gap-2 max-w-4xl overflow-x-auto px-4 pb-2">
+          <div 
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex gap-2 max-w-4xl overflow-x-auto px-4 pb-2"
+            onClick={(e) => e.stopPropagation()}
+          >
             {images.map((img, idx) => (
               <button
                 key={idx}

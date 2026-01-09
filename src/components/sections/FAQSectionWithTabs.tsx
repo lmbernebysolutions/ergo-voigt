@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Plus, Minus, HelpCircle } from "lucide-react"
+import { Plus, Minus, HelpCircle, ArrowLeft, ChevronRight } from "lucide-react"
 import { FAQCategory, FAQItem } from "@/data/faq"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
@@ -14,6 +14,12 @@ interface FAQSectionWithTabsProps {
 
 export function FAQSectionWithTabs({ categories, className }: FAQSectionWithTabsProps) {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]?.id || "")
+  const [activeSubCategoryId, setActiveSubCategoryId] = useState<string | null>(null)
+
+  // Reset sub-category selection when main category changes
+  useEffect(() => {
+    setActiveSubCategoryId(null)
+  }, [selectedCategory])
 
   return (
     <div className={cn("mx-auto max-w-4xl", className)}>
@@ -45,11 +51,69 @@ export function FAQSectionWithTabs({ categories, className }: FAQSectionWithTabs
 
         {categories.map((category) => (
           <TabsContent key={category.id} value={category.id} className="mt-0">
-            <div className="space-y-4">
-              {category.items.map((item, idx) => (
-                <FAQItemComponent key={idx} item={item} />
-              ))}
-            </div>
+            {category.subCategories ? (
+              // Sub-category logic (Drill-down)
+              <div>
+                <AnimatePresence mode="wait">
+                  {!activeSubCategoryId ? (
+                    <motion.div
+                      key="grid"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="grid gap-4 sm:grid-cols-2"
+                    >
+                      {category.subCategories.map((sub) => (
+                        <button
+                          key={sub.id}
+                          onClick={() => setActiveSubCategoryId(sub.id)}
+                          className="flex items-center justify-between p-6 rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 hover:shadow-md hover:ring-primary/20 hover:bg-slate-50 transition-all text-left group"
+                        >
+                          <span className="font-bold text-slate-900">{sub.label}</span>
+                          <div className="h-8 w-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                            <ChevronRight className="h-5 w-5" />
+                          </div>
+                        </button>
+                      ))}
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="details"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                    >
+                      <button
+                        onClick={() => setActiveSubCategoryId(null)}
+                        className="mb-6 flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ArrowLeft className="h-4 w-4" />
+                        Zurück zur Übersicht
+                      </button>
+                      
+                      <h3 className="mb-6 text-xl font-bold text-slate-950">
+                        {category.subCategories.find(s => s.id === activeSubCategoryId)?.label}
+                      </h3>
+
+                      <div className="space-y-4">
+                        {category.subCategories
+                          .find(s => s.id === activeSubCategoryId)
+                          ?.items.map((item, idx) => (
+                            <FAQItemComponent key={idx} item={item} />
+                          ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              // Standard list
+              <div className="space-y-4">
+                {category.items.map((item, idx) => (
+                  <FAQItemComponent key={idx} item={item} />
+                ))}
+              </div>
+            )}
           </TabsContent>
         ))}
       </Tabs>

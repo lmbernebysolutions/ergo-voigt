@@ -23,6 +23,13 @@ export interface Location {
     payment?: string[];
     parking?: string[];
   };
+  extraInfo?: {
+    title: string;
+    description: string;
+    link: string;
+    linkText: string;
+    logo?: string;
+  };
 }
 
 export const locations: Location[] = [
@@ -49,6 +56,13 @@ export const locations: Location[] = [
       payment: ["Nur Barzahlung"],
       parking: ["Gebührenpflichtige Parkhausplätze", "Gebührenpflichtige Parkplätze"],
     },
+    extraInfo: {
+      title: "Kosmetikstudio",
+      description: "Gesund & Schön im Marktgässchen",
+      link: "https://www.gesundschoen-aue.de/",
+      linkText: "Zur Website",
+      logo: "/Aue/logo-gesund-und-schoen.jpg"
+    }
   },
   {
     id: "schwarzenberg",

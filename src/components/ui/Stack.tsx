@@ -182,7 +182,9 @@ export default function Stack({
               onLongPress={() => {
                 if (isTop && !isMobile) {
                   // On desktop, long press opens gallery
-                  const locationId = cardLocationIds[index] || ""
+                  // FIX: Use card.id (original index + 1) to map back to the correct locationId
+                  const originalIndex = card.id - 1
+                  const locationId = cardLocationIds[originalIndex] || ""
                   if (onCardClick && locationId) {
                     onCardClick(locationId, 0)
                   }
@@ -196,7 +198,9 @@ export default function Stack({
                 onClick={() => {
                   if (shouldOpenOnClick && isTop) {
                     // On mobile click, open gallery with all images for this location
-                    const locationId = cardLocationIds[index] || ""
+                    // FIX: Use card.id (original index + 1) to map back to the correct locationId
+                    const originalIndex = card.id - 1
+                    const locationId = cardLocationIds[originalIndex] || ""
                     if (onCardClick && locationId) {
                       onCardClick(locationId, 0)
                     }

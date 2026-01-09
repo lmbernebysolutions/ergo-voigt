@@ -243,8 +243,8 @@
   .logo-arc-watermark {
     background-image: url("/nav-ring.png");
     background-repeat: no-repeat;
-    background-size: 620px;
-    background-position: -120px 60%;
+    background-size: contain;
+    background-position: center;
     opacity: 0.08;
     pointer-events: none;
     filter: drop-shadow(0 20px 60px oklch(0.55 0.15 260 / 0.08));

@@ -15,7 +15,7 @@ const detailCards = [
     icon: Check,
     title: "Koordiniert mit Ärzten",
     description:
-      "Wir sprechen mit verordnenden Ärzt:innen, Reha-Teams und Schulen, um Ziele abzustimmen und Wartezeiten kurz zu halten.",
+      "Wir sprechen mit verordnenden Ärzt/innen, Reha-Teams und Schulen, um Ziele abzustimmen und Wartezeiten kurz zu halten.",
     tag: "Netzwerk",
   },
   {
@@ -67,7 +67,12 @@ export default function LeistungenPage() {
 
         <div className="my-12 md:my-16 lg:my-20">
           <FAQSectionWithTabs categories={faqCategories} />
-              </div>
+          <div className="mt-8 flex justify-center">
+            <Button variant="outline" size="lg" asChild className="rounded-full px-8 font-bold border-primary text-primary hover:bg-primary/10">
+              <a href="/faq">Alle FAQs ansehen</a>
+            </Button>
+          </div>
+        </div>
       </div>
 
       <section

@@ -12,8 +12,12 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card"
 import { Modal } from "@/components/ui/Modal"
 import { ImageGallery } from "@/components/ui/ImageGallery"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 import { LocationCards } from "@/components/sections/LocationCards"
+import { NewsSection } from "@/components/sections/NewsSection"
+import { FAQSectionWithTabs } from "@/components/sections/FAQSectionWithTabs"
+import { faqCategories } from "@/data/faq"
 import { services } from "@/data/services"
 import { getServiceImages } from "@/lib/serviceImages"
 
@@ -65,7 +69,7 @@ function ServiceCardWithScrollAnimation({
       tabIndex={0}
       role="button"
       aria-label={`${service.title} - Mehr erfahren`}
-      className="group relative cursor-pointer overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200/50 transition-all md:hover:shadow-2xl md:hover:shadow-sky-100/50 md:hover:-translate-y-1 ring-1 ring-white/55 focus:outline-none focus:ring-4 focus:ring-primary/50"
+      className="group relative cursor-pointer overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200/50 transition-all md:hover:shadow-2xl md:hover:shadow-sky-100/50 md:hover:-translate-y-1 ring-1 ring-white/55 focus:outline-none focus:ring-4 focus:ring-primary/50 h-full flex flex-col"
     >
       {/* Background Image with Scroll Animation */}
       <div
@@ -141,6 +145,17 @@ export default function Home() {
       {/* Location Cards */}
       <LocationCards />
 
+      <NewsSection />
+
+      <section className="bg-slate-50 py-16 lg:py-24">
+        <FAQSectionWithTabs categories={faqCategories} />
+        <div className="mt-8 flex justify-center">
+          <Button variant="outline" size="lg" asChild className="rounded-full px-8 font-bold border-primary text-primary hover:bg-primary/10">
+            <Link href="/faq">Alle FAQs ansehen</Link>
+          </Button>
+        </div>
+      </section>
+
       <section className="relative overflow-hidden py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,oklch(0.92_0.05_260/_0.26),transparent_35%),radial-gradient(circle_at_90%_10%,oklch(0.82_0.12_260/_0.22),transparent_28%)]" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -158,12 +173,12 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-4 md:gap-6 lg:gap-8 lg:grid-cols-2">
+          <div className="flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 md:flex-wrap md:justify-center md:gap-6 md:pb-0 md:mx-0 md:px-0 md:overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {specialServices.map((service) => (
               <Link
                 key={service.id}
                 href={`/therapieangebote#${service.id}`}
-                className="group relative"
+                className="w-[85vw] flex-none snap-center md:w-[calc(50%-0.75rem)] group relative flex flex-col"
               >
                 <ServiceCardWithScrollAnimation
                   service={service}
@@ -190,11 +205,12 @@ export default function Home() {
           setSelectedServiceId(null)
           setGalleryServiceId(null)
         }}
-        maxWidth="2xl"
+        maxWidth="6xl"
       >
         {selectedServiceId && (() => {
           const service = specialServices.find((s) => s.id === selectedServiceId)!
           const galleryImages = getServiceImages(service.id, service.image)
+          const hasMultipleImages = galleryImages.length > 1
 
           const handleImageLongPress = () => {
             setGalleryServiceId(service.id)
@@ -213,58 +229,106 @@ export default function Home() {
           }
 
           return (
-            <div className="flex flex-col overflow-y-auto pt-0">
-              <div
-                className="relative h-64 shrink-0 w-full group cursor-pointer"
-                onPointerDown={handleImagePointerDown}
-                onPointerUp={handleImagePointerUp}
-                onPointerLeave={handleImagePointerUp}
-              >
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 id="modal-title" className="font-bold text-white" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
-                    {service.title}
-                  </h3>
-                </div>
-                {/* Long Press Hint */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="bg-white/90 backdrop-blur rounded-full px-4 py-2 text-sm font-medium text-slate-700 shadow-lg flex items-center gap-2">
-                    <ZoomIn className="w-4 h-4" />
-                    Gedrückt halten für Galerie
+            <div className="max-h-[90vh] overflow-y-auto p-0">
+              <div className="grid lg:grid-cols-[400px_1fr]">
+                {/* Left Side: Visuals */}
+                <div className="bg-slate-50/50 p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col">
+                  <div
+                    className="relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-[24px] shadow-md transition-all hover:shadow-xl group"
+                    onPointerDown={handleImagePointerDown}
+                    onPointerUp={handleImagePointerUp}
+                    onPointerLeave={handleImagePointerUp}
+                    onClick={() => setGalleryServiceId(service.id)}
+                  >
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 400px) 100vw, 400px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
+
+                    {/* Gallery Hint */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <div className="flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-primary shadow-2xl backdrop-blur-sm">
+                        <ZoomIn className="h-4 w-4" />
+                        Bildergalerie öffnen
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    {hasMultipleImages && (
+                      <div className="mb-4 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-primary/60">
+                        <div className="h-1 w-1 rounded-full bg-primary" />
+                        Mehrere Bilder verfügbar
+                      </div>
+                    )}
+                    <h3 id="modal-title" className="font-bold text-slate-950 leading-tight text-2xl lg:text-3xl">
+                      {service.title}
+                    </h3>
                   </div>
                 </div>
-              </div>
 
-              <div className="p-8">
-                <p className="leading-relaxed text-slate-800" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', lineHeight: '1.7' }}>
-                  {service.description}
-                </p>
+                {/* Right Side: Content */}
+                <div className="flex flex-col p-6 lg:p-10">
+                  <p className="text-lg leading-relaxed text-slate-700 mb-6 font-medium">
+                    {service.description}
+                  </p>
 
-                {service.details.length > 0 && (
-                  <div className="mt-8">
-                    <h4 className="mb-4 font-semibold text-slate-950" style={{ fontSize: 'clamp(1.125rem, 3.5vw, 1.5rem)' }}>
-                      Therapeutische Anwendungsbereiche
-                    </h4>
-                    <ul className="grid gap-3 sm:grid-cols-2">
-                      {service.details.map((detail, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start gap-3 rounded-xl bg-slate-50 p-3 text-sm text-slate-700"
-                        >
-                          <CheckCircle2 className="h-5 w-5 shrink-0 text-sky-500" />
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {service.longDescription && (
+                    <p className="leading-relaxed text-slate-700 mb-8" style={{ fontSize: '1rem' }}>
+                      {service.longDescription}
+                    </p>
+                  )}
+
+                  {service.details.length > 0 && (
+                    <div className="space-y-4">
+                      <h4 className="font-bold uppercase tracking-wider text-primary text-xs">
+                        Therapeutische Schwerpunkte
+                      </h4>
+                      <ul className="grid gap-2 sm:grid-cols-1">
+                        {service.details.map((detail, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-start gap-3 py-1 text-sm text-slate-600"
+                          >
+                            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary mt-0.5">
+                              <CheckCircle2 className="h-3.5 w-3.5" />
+                            </div>
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* FAQs Accordion */}
+                  {service.faqs && service.faqs.length > 0 && (
+                    <div className="pt-8 mt-4 border-t border-slate-100">
+                      <p className="mb-4 font-bold uppercase tracking-wider text-primary text-xs">Häufige Fragen</p>
+                      <Accordion type="single" collapsible className="w-full">
+                        {service.faqs.map((faq, idx) => (
+                          <AccordionItem key={idx} value={`item-${idx}`} className="border-slate-100">
+                            <AccordionTrigger className="text-slate-900 font-semibold hover:text-primary hover:no-underline text-left text-sm py-3">
+                              {faq.question}
+                            </AccordionTrigger>
+                            <AccordionContent className="text-slate-600 leading-relaxed text-sm">
+                              {faq.answer}
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
+                      </Accordion>
+                    </div>
+                  )}
+
+                  <div className="mt-8 pt-8 border-t border-slate-100">
+                    <Button asChild size="lg" className="w-full sm:w-auto rounded-full px-8 font-bold shadow-lg shadow-primary/20">
+                      <Link href="/praxis">Beratung anfragen</Link>
+                    </Button>
                   </div>
-                )}
+                </div>
               </div>
             </div>
           )
@@ -299,7 +363,7 @@ export default function Home() {
               </h2>
               <p className="max-w-2xl leading-relaxed text-slate-800" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', lineHeight: '1.7' }}>
                 Unsere Praxis verbindet klare Prozesse mit Empathie. Wir planen
-                Therapieeinheiten transparent, stimmen uns mit Ärzt:innen ab und
+                Therapieeinheiten transparent, stimmen uns mit Ärzt/innen ab und
                 schaffen Räume, die Ruhe geben.
               </p>
               <div className="flex flex-wrap gap-3">

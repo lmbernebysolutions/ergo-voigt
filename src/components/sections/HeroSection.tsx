@@ -121,19 +121,24 @@ export function HeroSection() {
           <div className="relative w-full lg:w-[52%] flex justify-center lg:justify-end">
             <div className="absolute -right-10 -top-10 -z-10 h-64 w-64 rounded-full border-[40px] border-blue-50 opacity-60 blur-sm hidden lg:block" />
             
-            <div className="relative aspect-video w-full h-[200px] sm:h-[240px] md:h-[280px] lg:aspect-square lg:h-auto lg:w-[420px] max-w-[420px]">
-               <Stack 
-                 cards={cards}
-                 randomRotation={true}
-                 sensitivity={150}
-                 sendToBackOnClick={false}
-                 mobileClickOnly={true}
-                 pauseOnHover={true}
-                 autoplay={true}
-                 autoplayDelay={4000}
-                 onCardClick={handleCardClick}
-                 cardLocationIds={SLIDES.map(s => s.locationId)}
-               />
+            <div className="flex flex-col items-center w-full max-w-[420px]">
+              <div className="relative aspect-video w-full h-[200px] sm:h-[240px] md:h-[280px] lg:aspect-square lg:h-auto">
+                 <Stack 
+                   cards={cards}
+                   randomRotation={true}
+                   sensitivity={150}
+                   sendToBackOnClick={false}
+                   mobileClickOnly={true}
+                   pauseOnHover={true}
+                   autoplay={true}
+                   autoplayDelay={4000}
+                   onCardClick={handleCardClick}
+                   cardLocationIds={SLIDES.map(s => s.locationId)}
+                 />
+              </div>
+              <p className="mt-4 text-[10px] font-bold uppercase tracking-widest text-slate-400 text-center">
+                Tippen zum Wechseln
+              </p>
             </div>
           </div>
         </div>
@@ -144,11 +149,31 @@ export function HeroSection() {
         const locationImages = getLocationImages(galleryLocationId)
         const locationName = locations.find(l => l.id === galleryLocationId)?.name || ""
         
+        // Helper to generate a title from filename
+        const getImageTitle = (path: string) => {
+           // Extract filename: "/Aue/Pädiatrie & Entwicklung1.webp" -> "Pädiatrie & Entwicklung1"
+           const filename = path.split('/').pop()?.split('.')[0] || ""
+           // Clean up: remove digits at end, replace & with "und" maybe? Keep it simple.
+           const cleanName = filename.replace(/\d+$/, '').replace(/_/g, ' ')
+           // Combine with Location Name
+           // e.g. "Praxis Aue - Pädiatrie & Entwicklung"
+           // If filename is generic like "Auepraxis", just show Location Name
+           if (cleanName.toLowerCase().includes(locationName.toLowerCase().replace('praxis ', '').toLowerCase())) {
+             return locationName
+           }
+           // Use only the City name part of locationName for brevity? "Praxis Aue" -> "Aue"
+           const city = locationName.replace('Praxis ', '')
+           return `${city} - ${cleanName}`
+        }
+
+        const imageTitles = locationImages.map(getImageTitle)
+
         return (
           <ImageGallery
             images={locationImages}
+            imageTitles={imageTitles}
             initialIndex={galleryInitialIndex}
-            title={locationName}
+            title={locationName} 
             onClose={() => setGalleryLocationId(null)}
           />
         )

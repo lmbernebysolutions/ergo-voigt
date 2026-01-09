@@ -2,71 +2,12 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Brain, Heart, Activity, Eye, Zap, Wind, Info, MapPin, ZoomIn } from "lucide-react"
+import { MapPin, ZoomIn, CheckCircle2 } from "lucide-react"
 import Image from "next/image"
 import { ImageGallery } from "@/components/ui/ImageGallery"
 import { services } from "@/data/services"
 import { getServiceImages } from "@/lib/serviceImages"
-
-const therapyContent = [
-    {
-        id: "neurofeedback",
-        title: "Neurofeedback (NFB)",
-        description: "Eine sehr sanfte und schmerzfreie Therapie zur Messung und Verbesserung der Gehirnaktivität (z.B. Wahrnehmung, Denken, Aufmerksamkeit, Verhalten). Durch audiovisuelles Feedback lernt das Gehirn, seine Selbstregulierungsfähigkeit zu optimieren.",
-        longDescription: "Neurofeedback ist eine Methode des Biofeedbacks, bei der Körpersignale und Hirnaktivitäten in Echtzeit über einen Bildschirm rückgemeldet werden. Es wird erfolgreich eingesetzt bei ADHS, Epilepsie, Tinnitus, Migräne und Schlafstörungen.",
-        icon: Brain,
-        details: ["Anerkannte Therapieform (über Rezept erstattungsfähig)", "Schmerzfrei und ohne bekannte Nebenwirkungen", "Dauer: ca. 45-60 Minuten pro Sitzung"]
-    },
-    {
-        id: "bemer",
-        title: "BEMER Therapie",
-        description: "Physikalische Gefäßtherapie zur Verbesserung der Mikrozirkulation. Sie fördert die Durchblutung der kleinsten Gefäße und unterstützt so den Nährstoffaustausch und Abtransport von Stoffwechselprodukten.",
-        longDescription: "Grundlage vieler chronischer Erkrankungen ist eine gestörte Durchblutung der Kapillaren. Die BEMER Therapie stimuliert die natürliche Pumpbewegung der Gefäße, was zu mehr Antrieb, höherer Leistungsfähigkeit und schnellerer Heilung beitragen kann.",
-        icon: Zap,
-        details: ["Einsatz bei Schmerzen, Burnout, Wundheilungsstörungen", "Unterstützt körpereigene Selbstheilungskräfte", "Dauer der Ganzkörper-Therapie: ca. 8 Minuten"]
-    },
-    {
-        id: "visualtraining",
-        title: "Visualtraining (VT)",
-        description: "Individuelles, verhaltensorientiertes Sehtraining zur Verbesserung der Sehkraft, der visuellen Ausdauer und damit der persönlichen Leistungsfähigkeit.",
-        longDescription: "Sehen ist ein komplexer Prozess, der Augenmotorik, Fixation, Scharfstellung und Koordination verknüpft. VT zielt darauf ab, visuelle Defizite durch gezielte Übungen und Wahrnehmungstraining nachhaltig zu beheben.",
-        icon: Eye,
-        details: ["Hilfreich bei Konzentrationsproblemen und Leseunlust", "Individueller Trainingsplan durch Optometristen", "Inklusive häuslichem Training"]
-    },
-    {
-        id: "sturzpraevention",
-        title: "Sturzprävention",
-        description: "Maßnahmen und Strategien zur Verhinderung von Stürzen, insbesondere bei älteren Menschen oder Personen mit erhöhtem Risiko.",
-        longDescription: "Durch gezielte Übungen zur Verbesserung von Balance, Kraft und Koordination erhöhen wir die Sicherheit und Lebensqualität. Auch Anpassungen der Wohnumgebung werden im Rahmen der Therapie thematisiert.",
-        icon: Activity,
-        details: ["Stärkung der Muskulatur und Reaktionsfähigkeit", "Erhöhung der Mobilität und Selbstständigkeit", "Besonders wichtig bei neurologischen Erkrankungen"]
-    },
-    {
-        id: "pmr",
-        title: "Progressive Muskelrelaxation (PMR)",
-        description: "Entspannungstechnik nach Jacobson zur Reduktion von Stress und Angst durch systematische Muskelanspannung und -entspannung.",
-        longDescription: "Die Methode basiert auf der Idee, dass körperliche Entspannung unmittelbar zu einer psychischen Beruhigung führt. Durch das bewusste Erleben von Spannung und Entspannung wird ein besseres Körperbewusstsein gefördert.",
-        icon: Wind,
-        details: ["Einsatz bei Stress, Schlafstörungen und chronischen Schmerzen", "Erhöhung der Stressresistenz", "Auch als zertifizierter Gesundheitskurs möglich"]
-    },
-    {
-        id: "linkshaenderberatung",
-        title: "Linkshänderberatung",
-        description: "Spezifische Unterstützung für Linkshänder, um sich in einer rechtshändigen Welt ergonomisch und komfortabel zurechtzufinden.",
-        longDescription: "Die Beratung umfasst die Analyse der Händigkeit, Empfehlungen für geeignete Hilfsmittel (Scheren, Stifte) sowie spezielles Schreibtraining zur Verbesserung der Körperhaltung.",
-        icon: Info,
-        details: ["Beratung für Kinder, Eltern, Lehrer und Erzieher", "Erstellung von ergonomischen Arbeitsplatz-Konzepten", "Abrechnung über ergotherapeutische Verordnung möglich"]
-    },
-    {
-        id: "therapeutisches-reiten",
-        title: "Therapeutisches Reiten",
-        description: "Momentan sind leider alle vorhandenen Therapieplätze belegt. Eine Aufnahme auf die Warteliste ist zurzeit nicht möglich.",
-        longDescription: "Die Arbeit mit dem Pferd fördert Motorik und psychische Entwicklung. Sobald sich die Kapazitäten ändern, informieren wir Sie an dieser Stelle.",
-        icon: Heart,
-        details: ["Ganzheitlicher Ansatz", "Aktuell keine freien Plätze", "Update erfolgt bei Änderung der Situation"],
-        alert: true
-    }
-]
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export default function TherapieangebotePage() {
     const [galleryState, setGalleryState] = useState<{ isOpen: boolean; serviceId: string; images: string[] }>({
@@ -74,6 +15,8 @@ export default function TherapieangebotePage() {
         serviceId: "",
         images: []
     })
+
+    const specialServices = services.filter(s => s.category === "special")
 
     const openGallery = (serviceId: string) => {
         const service = services.find(s => s.id === serviceId)
@@ -87,7 +30,7 @@ export default function TherapieangebotePage() {
         <main className="bg-background text-foreground">
             <header className="relative overflow-hidden bg-gradient-to-br from-secondary/80 via-white to-background pb-16 pt-24 md:pb-24">
                 <div className="pointer-events-none absolute inset-0 orb-sheen" />
-                <div className="pointer-events-none absolute inset-0 logo-arc-watermark" />
+                <div className="pointer-events-none absolute inset-0 logo-watermark" />
                 <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
                     <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
                         Therapieangebote
@@ -104,27 +47,27 @@ export default function TherapieangebotePage() {
             <section className="relative py-12 md:py-20">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="grid gap-12 lg:grid-cols-1">
-                        {therapyContent.map((therapy) => {
-                            const serviceData = services.find(s => s.id === therapy.id)
-                            const hasMultipleImages = serviceData && getServiceImages(serviceData.id, serviceData.image).length > 1
+                        {specialServices.map((service) => {
+                            const hasMultipleImages = getServiceImages(service.id, service.image).length > 1
+                            const Icon = service.icon
 
                             return (
                                 <div
-                                    key={therapy.id}
-                                    id={therapy.id}
-                                    className={`group relative overflow-hidden rounded-[48px] border border-white/60 bg-white/95 shadow-[0_32px_110px_-78px_oklch(0.55_0.15_260/_0.8)] transition-all hover:shadow-[0_40px_130px_-80px_oklch(0.55_0.15_260/_0.9)] ${therapy.alert ? 'ring-2 ring-primary/20' : ''}`}
+                                    key={service.id}
+                                    id={service.id}
+                                    className={`group relative overflow-hidden rounded-[48px] border border-white/60 bg-white/95 shadow-[0_32px_110px_-78px_oklch(0.55_0.15_260/_0.8)] transition-all hover:shadow-[0_40px_130px_-80px_oklch(0.55_0.15_260/_0.9)] ${service.alert ? 'ring-2 ring-primary/20' : ''}`}
                                 >
-                                    <div className="grid lg:grid-cols-[400px_1fr]">
-                                        {/* Left Side: Visuals & Title (Compact & Landscape) */}
-                                        <div className="bg-slate-50/50 p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col justify-start">
-                                            {serviceData && (
+                                    <div className="grid lg:grid-cols-[320px_1fr]">
+                                        {/* Left Side: Visuals & Title & Details */}
+                                        <div className="bg-slate-50/50 p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col justify-start">
+                                            <div>
                                                 <div
-                                                    className="group/img relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-[32px] shadow-md transition-all hover:shadow-xl group-hover:shadow-primary/10"
-                                                    onClick={() => openGallery(serviceData.id)}
+                                                    className="group/img relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-[24px] shadow-md transition-all hover:shadow-xl group-hover:shadow-primary/10"
+                                                    onClick={() => openGallery(service.id)}
                                                 >
                                                     <Image
-                                                        src={serviceData.image}
-                                                        alt={therapy.title}
+                                                        src={service.image}
+                                                        alt={service.title}
                                                         fill
                                                         className="object-cover transition-transform duration-700 group-hover/img:scale-105"
                                                         sizes="(max-width: 400px) 100vw, 400px"
@@ -139,50 +82,96 @@ export default function TherapieangebotePage() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            )}
 
-                                            <div className="mt-8">
-                                                <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ${therapy.alert ? 'bg-primary/20' : 'bg-primary/10'} text-primary shadow-sm ring-1 ring-primary/10`}>
-                                                    <therapy.icon className="h-7 w-7" />
+                                                <div className="mt-6">
+                                                    {Icon && (
+                                                        <div className={`mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${service.alert ? 'bg-primary/20' : 'bg-primary/10'} text-primary shadow-sm ring-1 ring-primary/10`}>
+                                                            <Icon className="h-6 w-6" />
+                                                        </div>
+                                                    )}
+                                                    <h2 className="font-bold text-slate-950 leading-tight" style={{ fontSize: '1.5rem' }}>
+                                                        {service.title}
+                                                    </h2>
+                                                    {hasMultipleImages && (
+                                                        <div className="mt-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-primary/60">
+                                                            <div className="h-1 w-1 rounded-full bg-primary" />
+                                                            Mehrere Bilder verfügbar
+                                                        </div>
+                                                    )}
                                                 </div>
-                                                <h2 className="font-bold text-slate-950 leading-tight" style={{ fontSize: '1.75rem' }}>
-                                                    {therapy.title}
-                                                </h2>
-                                                {hasMultipleImages && (
-                                                    <div className="mt-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-primary/60">
-                                                        <div className="h-1 w-1 rounded-full bg-primary" />
-                                                        Mehrere Bilder verfügbar
-                                                    </div>
-                                                )}
                                             </div>
+
+                                            {/* Details / Anwendungsbereiche (Moved to Left Side) */}
+                                            {service.details.length > 0 && (
+                                                <div className="mt-8 space-y-3">
+                                                    <p className="font-bold uppercase tracking-wider text-primary text-[10px] lg:text-[11px]">Therapeutische Anwendungsbereiche:</p>
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                        {service.details.map((detail, i) => (
+                                                            <span key={i} className="inline-flex items-center rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 shadow-sm border border-slate-100">
+                                                                {detail}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
 
                                         {/* Right Side: Detailed Content */}
-                                        <div className="flex flex-col justify-center p-8 md:p-12 lg:p-14">
+                                        <div className="flex flex-col justify-center p-6 md:p-8 lg:p-10">
                                             <div className="space-y-6">
-                                                <p className="text-xl font-semibold leading-relaxed text-slate-900 md:text-2xl">
-                                                    {therapy.description}
-                                                </p>
-                                                <p className="leading-relaxed text-slate-700" style={{ fontSize: '1.125rem' }}>
-                                                    {therapy.longDescription}
-                                                </p>
-
-                                                <div className="space-y-4">
-                                                    <p className="font-bold uppercase tracking-wider text-primary text-[11px] lg:text-xs">Ihre Vorteile & Fokus:</p>
-                                                    <ul className="grid gap-2 sm:grid-cols-1">
-                                                        {therapy.details.map((detail, i) => (
-                                                            <li key={i} className="flex items-center gap-3 py-1 transition-colors">
-                                                                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                                                    <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                                                                </div>
-                                                                <span className="text-sm font-medium text-slate-700 leading-snug">{detail}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
+                                                <div>
+                                                    <p className="text-base leading-relaxed text-slate-700 md:text-lg mb-4 font-medium">
+                                                        {service.description}
+                                                    </p>
+                                                    
+                                                    {service.longDescription && (
+                                                        <p className="leading-relaxed text-slate-600 text-sm md:text-base">
+                                                            {service.longDescription}
+                                                        </p>
+                                                    )}
                                                 </div>
 
-                                                <div className="pt-8">
-                                                    <Button asChild size="lg" className="rounded-full px-10 py-7 text-lg font-bold shadow-xl shadow-primary/20">
+                                                {/* Grid for Benefits and FAQs */}
+                                                <div className="grid lg:grid-cols-2 gap-6 pt-6 border-t border-slate-100">
+                                                    {/* Benefits / Ziele */}
+                                                    {service.benefits && service.benefits.length > 0 && (
+                                                        <div className="space-y-3">
+                                                            <p className="font-bold uppercase tracking-wider text-primary text-[10px] lg:text-[11px]">Ziele der Behandlung:</p>
+                                                            <ul className="grid gap-1.5 sm:grid-cols-1">
+                                                                {service.benefits.map((benefit, i) => (
+                                                                    <li key={i} className="flex items-start gap-2.5 py-0.5">
+                                                                        <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                                                                            <CheckCircle2 className="h-2.5 w-2.5" />
+                                                                        </div>
+                                                                        <span className="text-sm font-medium text-slate-700 leading-snug">{benefit}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                    {/* FAQs Accordion */}
+                                                    {service.faqs && service.faqs.length > 0 && (
+                                                        <div>
+                                                            <p className="mb-3 font-bold uppercase tracking-wider text-primary text-[10px] lg:text-[11px]">Häufige Fragen:</p>
+                                                            <Accordion type="single" collapsible className="w-full">
+                                                                {service.faqs.map((faq, idx) => (
+                                                                    <AccordionItem key={idx} value={`item-${idx}`} className="border-slate-100">
+                                                                        <AccordionTrigger className="text-slate-900 font-semibold hover:text-primary hover:no-underline text-left py-2 text-sm">
+                                                                            {faq.question}
+                                                                        </AccordionTrigger>
+                                                                        <AccordionContent className="text-slate-600 leading-relaxed text-sm pb-3">
+                                                                            {faq.answer}
+                                                                        </AccordionContent>
+                                                                    </AccordionItem>
+                                                                ))}
+                                                            </Accordion>
+                                                        </div>
+                                                    )}
+                                                </div>
+
+                                                <div className="pt-2">
+                                                    <Button asChild size="default" className="rounded-full px-8 py-6 text-base font-bold shadow-lg shadow-primary/20">
                                                         <a href="/praxis">Beratung anfragen</a>
                                                     </Button>
                                                 </div>

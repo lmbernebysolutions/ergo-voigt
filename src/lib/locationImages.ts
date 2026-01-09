@@ -2,7 +2,6 @@
 export const locationImageGalleries: Record<string, string[]> = {
   aue: [
     "/Aue/Auepraxis1.webp",
-    "/Aue/Neurologie & Handtherapie : Orthopädie.webp",
     "/Aue/Neurologie & Handtherapie : Orthopädie2.webp",
     "/Aue/Neurologie & Handtherapie : Orthopädie3.webp",
     "/Aue/Pädiatrie & Entwicklung1.webp",

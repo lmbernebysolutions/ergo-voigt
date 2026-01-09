@@ -38,10 +38,10 @@ npm run start
 
 ## 🔒 Passwort-Schutz
 
-Die Website ist mit einem Passwort geschützt:
-- **Passwort:** `Voigt2025!`
-- Nach erfolgreicher Anmeldung wird ein Cookie gesetzt (24h gültig)
-- Passwort kann in `src/middleware.ts` und `src/app/api/auth/route.ts` geändert werden
+Die Website ist mit einem Passwort geschützt.
+- Das Passwort wird über die Umgebungsvariable `SITE_PASSWORD` konfiguriert.
+- Standardmäßig (Development) ist ein Fallback konfiguriert.
+- Nach erfolgreicher Anmeldung wird ein Cookie gesetzt (24h gültig).
 
 ## 📁 Projektstruktur
 
@@ -76,7 +76,7 @@ vercel --prod
 
 ## 📝 Wichtige Hinweise
 
-- **Passwort ändern:** Passwort in `src/middleware.ts` und `src/app/api/auth/route.ts` ändern
+- **Passwort ändern:** Passwort über `SITE_PASSWORD` in `.env.local` (local) oder Environment Variables (Production) setzen.
 - **Environment Variables:** Für Production können Umgebungsvariablen in Vercel gesetzt werden
 - **Custom Domain:** In Vercel Project Settings > Domains konfigurieren
 

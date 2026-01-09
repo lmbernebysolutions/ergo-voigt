@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const PASSWORD = 'Voigt2025!'
+const PASSWORD = process.env.SITE_PASSWORD || 'development_only_password'
 const COOKIE_NAME = 'auth-token'
 const COOKIE_VALUE = 'authenticated'
 

@@ -8,6 +8,7 @@ export interface FAQCategory {
   id: string;
   label: string;
   items: FAQItem[];
+  subCategories?: FAQCategory[]; // Optional for hierarchical structure
 }
 
 export const faqCategories: FAQCategory[] = [
